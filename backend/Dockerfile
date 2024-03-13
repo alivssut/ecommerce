@@ -1,5 +1,5 @@
 # Pull base image
-FROM python:3.12.1-slim-bullseye
+FROM python:latest
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
