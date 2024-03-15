@@ -3,6 +3,6 @@ from .models import User, UserProfile, UserAddress
 
 # Register your models here.
 
-admin.site.register(Country)
-admin.site.register(Region)
-admin.site.register(City)
+admin.site.register(User)
+admin.site.register(UserProfile)
+admin.site.register(UserAddress)

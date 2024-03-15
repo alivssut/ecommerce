@@ -11,14 +11,14 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='name', related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='user', related_name='profile')
     phone = models.CharField(blank=True, max_length=20, verbose_name='phone number')
     national_code = models.CharField(blank=True, max_length=20, verbose_name='national code', default='_')
     image = models.ImageField(blank=True, null=True, upload_to='user/profile', verbose_name='image')
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = 'User Profile'
+        verbose_name_plural = 'User Profiles'
 
     def __str__(self):
         return self.user.username
