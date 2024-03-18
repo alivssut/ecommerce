@@ -1,6 +1,26 @@
 from django.db import models
 
 # Create your models here.
+
+# Catagory model
+class Category(models.Model):
+    parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
+    name = models.CharField(max_length=200, null=True)
+    slug = models.SlugField(null=True)
+    image = models.ImageField(upload_to='category/image', verbose_name='image')
+    description = models.CharField(max_length=150, null=True,blank=True, verbose_name='Description')
+    is_active = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.name) 
+    
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+
 class Product(models.Model):
     PUBLISHED = "Published"
     PENDING_REVIEW = "Pending Review"
@@ -23,6 +43,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product/image', verbose_name='image')
     price = models.IntegerField(verbose_name='price')
     amount = models.IntegerField(verbose_name='amount')
+    category = models.ManyToManyField(Category, related_name='products', verbose_name='categories')
     slug = models.SlugField(verbose_name='slug', null=False, unique=True, allow_unicode=True, max_length=250)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=PENDING_REVIEW, verbose_name='status')
     visibility = models.CharField(max_length=50, choices=VISIBILITY_CHOICES, default=PUBLIC, verbose_name='visibility')
