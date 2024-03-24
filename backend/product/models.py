@@ -53,3 +53,32 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
+
+class Attribute(models.Model):
+    name = models.CharField(max_length=200, null=False, blank=False)
+    slug = models.SlugField(verbose_name='slug', null=False, unique=True, allow_unicode=True, max_length=250)
+    
+    class Meta:
+        verbose_name = 'Attribute'
+        verbose_name_plural = 'Attributes'
+    
+class ProductAttribute(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_attribute', verbose_name='product')
+    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, null=True, blank=True, related_name='attribute', verbose_name='attribute')
+    name = models.CharField(max_length=200, null=True, blank=True)
+    value = models.CharField(max_length=200, null=False, blank=False)
+    
+    class Meta:
+        verbose_name = 'Product Attribute'
+        verbose_name_plural = 'Product Attributes'
+
+class Variant(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variation', verbose_name='product')
+    sku = models.CharField(max_length=200, null=True, blank=True)
+    product_attribute = models.ManyToManyField(ProductAttribute, related_name='product_attribute', verbose_name='product attribute')
+    quantity = models.IntegerField(default=1, verbose_name='quantity')
+    price = models.IntegerField(default=0, verbose_name='price')
+    
+    class Meta:
+        verbose_name = 'Variant'
+        verbose_name_plural = 'Variants'
