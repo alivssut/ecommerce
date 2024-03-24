@@ -28,6 +28,8 @@ class Product(models.Model):
     PUBLIC = "Public"
     PASSWORD_PROTECTED = "Password protected"
     PRIVATE = "Private"
+    SIMPLE = "Simple"
+    VARIABLE = "Variable"
     STATUS_CHOICES = (
         (PUBLISHED, PUBLISHED),
         (PENDING_REVIEW, PENDING_REVIEW),
@@ -38,6 +40,10 @@ class Product(models.Model):
         (PASSWORD_PROTECTED, PASSWORD_PROTECTED),
         (PRIVATE, PRIVATE)
     )
+    PRODUCT_TYPE_CHOICES = (
+        (SIMPLE, SIMPLE),
+        (VARIABLE, VARIABLE)
+    )
     name = models.CharField(max_length=200, null=False, blank=False)
     sku = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='product/image', verbose_name='image')
@@ -46,6 +52,7 @@ class Product(models.Model):
     category = models.ManyToManyField(Category, related_name='products', verbose_name='categories')
     slug = models.SlugField(verbose_name='slug', null=False, unique=True, allow_unicode=True, max_length=250)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=PENDING_REVIEW, verbose_name='status')
+    product_type = models.CharField(max_length=50, choices=PRODUCT_TYPE_CHOICES, default=SIMPLE, verbose_name='product type')
     visibility = models.CharField(max_length=50, choices=VISIBILITY_CHOICES, default=PUBLIC, verbose_name='visibility')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
