@@ -21,4 +21,7 @@ from backend import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/', include('account.api.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
