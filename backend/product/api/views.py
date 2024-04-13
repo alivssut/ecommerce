@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework_simplejwt import authentication
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
-from product.models import Product
-from .serializers import ProductSerializer, ProductSimpleSerializer
+from product.models import Product, Category
+from .serializers import ProductSerializer, ProductSimpleSerializer, CategorySerializer
 # Create your views here.
 
 # Product list view
@@ -51,3 +51,11 @@ class ProductFromCategoryListView(generics.ListAPIView):
     def get_queryset(self):
         category_id = self.kwargs.get(self.lookup_url_kwarg)
         return Product.objects.filter(category__id=category_id)
+    
+    
+# Category list view
+class CategoryListView(generics.ListAPIView):
+    serializer_class = CategorySerializer
+    authentication_classes = []
+    permission_classes = [AllowAny,]
+    queryset = Category.objects.filter(parent=None).all()
