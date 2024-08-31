@@ -10,8 +10,10 @@ class Order(models.Model):
     SHIPPED = 'shipped'
     COMPLETED = 'Completed'
     REFUNDED = 'Refunded'
+    NOT_ORDERED = 'Not Ordered'
 
     STATUS_CHOICES = (
+        (NOT_ORDERED, 'Not Ordered'),
         (PENDING, 'Pending'),
         (PROCESSING, 'Processing'),
         (SHIPPED, 'Shipped'),
@@ -25,7 +27,7 @@ class Order(models.Model):
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default=PENDING
+        default=NOT_ORDERED
     )
     full_name = models.CharField(max_length=50, blank=True)
     email = models.CharField(max_length=50, blank=True)
