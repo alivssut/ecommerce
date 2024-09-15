@@ -32,5 +32,6 @@ psycopg2==2.9.9
 dj-database-url==2.1.0
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.0
-django-cors-headers=4.3.1 
+django-cors-headers==4.3.1 
 django-allauth==0.61.1
+dj_rest_auth==6.0.0
