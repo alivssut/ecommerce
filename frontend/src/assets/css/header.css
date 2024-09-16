@@ -1,0 +1,34 @@
+/* CSS مربوط به هدر */
+.header-top {
+    background-color: #f8f9fa; /* رنگ پس‌زمینه */
+    padding: 10px 0; /* فاصله داخلی */
+    border-bottom: none; /* خط بین هدر بالا و پایین بدون رنگ */
+  }
+  
+  .header-bottom-yellow-line {
+    height: 2px; /* ارتفاع خط نازک */
+    background-color: orange; /* رنگ خط نارنجی */
+  }
+  
+  .rtl-navbar {
+    direction: rtl; /* تنظیم راست به چپ */
+  }
+  
+  .rtl-navbar .d-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rtl-navbar .form-inline {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rtl-navbar .form-inline .form-control {
+    margin-left: 10px; /* فاصله بین نوار جستجو و دکمه */
+  }
+  
+  .rtl-navbar .navbar-nav {
+    margin-right: auto; /* تنظیم موقعیت لینک‌های ناوبری در سمت چپ */
+  }
+  
