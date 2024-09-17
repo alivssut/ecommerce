@@ -4,10 +4,12 @@ from rest_framework_simplejwt import authentication
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
 from product.models import Product, Category
 from .serializers import ProductSerializer, ProductSimpleSerializer, CategorySerializer
+from .pagination import ProductsPagination
 # Create your views here.
 
 # Product list view
 class ProductListView(generics.ListAPIView):
+    pagination_class = ProductsPagination
     serializer_class = ProductSimpleSerializer
     authentication_classes = [authentication.JWTAuthentication]
     permission_classes = [AllowAny,]
