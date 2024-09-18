@@ -7,21 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import PaginationComponent from '../components/pagination/pagination';
-
-const LimitedText = ({ text, limit }) => {
-    const truncatedText = truncateTextByCharacters(text, limit);
-
-    return (
-        <p className="product-description">{truncatedText}</p>
-    );
-};
-
-function truncateTextByCharacters(text, charLimit) {
-    if (text.length > charLimit) {
-        return text.slice(0, charLimit) + '...';
-    }
-    return text;
-}
+import ProductCardComponent from '../components/cards/productCard';
 
 function ProductListPage() {
     const [count, setCount] = useState(-1)
@@ -89,37 +75,14 @@ function ProductListPage() {
 			{/* Main product details */}
 			<Col sm={9} className="padding-right">
                 <div className="product-list">
-                <div className="heading-with-lines">
-                    <h2>محصولات</h2>
-                </div>
-                <Row>
-                {products.map((product) => (
-                        <div className="col-sm-3" key={product.id}>
-                            <div className="product-image-wrapper">
-                                <div className="single-products">
-                                    <div className="productinfo text-center">
-                                        <img src={product.image} alt={`Product ${product.id}`} />
-                                        <h2 className="product-price">{product.price} تومان</h2>
-                                        <LimitedText text={product.name} limit={20} />
-
-                                        <Button variant="default" className="add-to-cart">
-                                            <FaShoppingCart /> افزودن به سبـد خرید
-                                        </Button>
-
-                                        <div className="additional-buttons">
-                                            <Button variant="default" className="view-details">
-                                                <FaEye /> مشاهده جزییات
-                                            </Button>
-                                            <Button variant="default" className="add-to-wishlist">
-                                                <FaHeart /> افزودن به علاقه‌مندی‌ها
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </Row>
+                    <div className="heading-with-lines">
+                        <h2>محصولات</h2>
+                    </div>
+                    <Row>
+                        {products.map((product) => (
+                            <ProductCardComponent key={product.id} product={product} />
+                        ))}
+                    </Row>
                 </div>
 			</Col>
 		  </Row>

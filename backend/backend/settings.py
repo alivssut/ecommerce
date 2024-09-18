@@ -106,7 +106,11 @@ AUTH_USER_MODEL = 'accounts.User'
 
 DATABASES = {
     "default": env.dj_db_url("DATABASE_URL",
-                             default="postgres://postgres@db/postgres")
+                             default="postgres://postgres@db/postgres"),
+    'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+        },
 }
 
 

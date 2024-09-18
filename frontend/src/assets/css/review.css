@@ -1,0 +1,19 @@
+.review-section {
+    margin-top: 20px;
+}
+
+.review-card {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.review-card .text-warning {
+    color: #ffcc00;
+}
+
+.review-card .text-muted {
+    color: #e0e0e0;
+}

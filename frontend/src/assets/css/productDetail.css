@@ -286,16 +286,12 @@ li a{
     right: 10px;
   }
   
-/* Styles for the Carousel images */
-.carousel-item img {
-    margin: 2px;
-    max-height: 200px; /* Adjust the height to fit your design */
-    object-fit: cover; /* Ensure images cover the area without distortion */
-  }
-  
-  
-  .carousel-item img:hover {
-    opacity: 0.8;
+
+  .carousel-item img {
+    margin: 2px;  /* Space between images */
+    max-height: 100px;  /* Adjust the height to fit your design */
+    object-fit: cover;  /* Ensure images cover the area without distortion */
+    max-width: 268px;  /* Ensure images don't exceed the width of the carousel item */
   }
 
 /* CSS to customize the left and right navigation buttons of the carousel */

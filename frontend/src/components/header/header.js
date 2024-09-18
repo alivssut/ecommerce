@@ -20,30 +20,25 @@ const Header = () => {
                 <Nav.Link href="#"><FaLock /> خروج</Nav.Link>
               </Nav.Item>
             </Nav>
-            {/* لوگو */}
             <a href="#" className="mr-3">
               <img src={logoImg} alt="Logo" style={{ maxHeight: '50px' }} />
             </a>
-            {/* ورود/خروج */}
             
           </div>
         </Container>
       </div>
 
-       {/* نوار پایین */}
        <Navbar bg="light" expand="lg" className="rtl-navbar">
         <Container>
-          {/* لینک‌های ناوبری در ردیف اول */}
           <div className="navbar-nav-wrapper">
             <Nav className="mr-auto">
-              <Nav.Link href="#">خانه</Nav.Link>
-              <Nav.Link href="#">محصولات</Nav.Link>
+              <Nav.Link href="/">خانه</Nav.Link>
+              <Nav.Link href="/products/">محصولات</Nav.Link>
               <Nav.Link href="#">مقالات</Nav.Link>
               <Nav.Link href="About.html">درباره ما</Nav.Link>
               <Nav.Link href="contact-us.html">تماس با ما</Nav.Link>
             </Nav>
           </div>
-          {/* نوار جستجو در ردیف دوم */}
           <div className="d-flex justify-content-end align-items-center mt-2">
             <Form inline className="d-flex align-items-center">
               <FormControl type="text" placeholder="جستجو" className="mr-sm-2" />
@@ -55,7 +50,6 @@ const Header = () => {
         </Container>
       </Navbar>
 
-      {/* خط نازک نارنجی زیر هدر */}
       <div className="header-bottom-yellow-line"></div>
     </header>
   );

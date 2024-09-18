@@ -16,7 +16,8 @@ function App() {
         <Header/>
         <Routes > 
           <Route exact path="/" element={<HomePage/>} />
-          <Route exact path="products/:productId" element={<ProductDetail/>} />
+          <Route exact path="products/:slug" element={<ProductDetail />} />
+          {/* <Route exact path="products/:productId" element={<ProductDetail/>} /> */}
           <Route exact path="products/" element={<ProductListPage/>} />
         </Routes >
         <Footer />

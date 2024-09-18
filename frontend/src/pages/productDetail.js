@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Carousel, Tab, Nav, Form, Button, Modal} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap CSS
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import { useParams } from 'react-router-dom';
 import RecommenderSlider from '../components/slider/recommenderSlider';
 import one from '../assets/images/product-details/1.jpg';
 import similar from '../assets/images/product-details/similar1.jpg';
@@ -10,11 +10,22 @@ import newImg from '../assets/images/product-details/new.jpg';
 import galleryImg from '../assets/images/home/Gallery.jpg';
 import shippingImg from "../assets/images/home/shipping.jpg";
 import "../assets/css/productDetail.css"
+import axios from "axios";
+import ReactLoading from 'react-loading';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ReviewForm from '../components/review/reviewForm';
+import ReviewList from '../components/review/reviewList';
 
 function ProductDetail() {
+	const { slug } = useParams();
 	const [quantity, setQuantity] = useState(0);
 	const [show, setShow] = useState(false);
 	const [currentImage, setCurrentImage] = useState(one);
+	const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null); 
+	const [reviews, setReviews] = useState([]);
 
 	const handleQuantityChange = (event) => {
 	  setQuantity(event.target.value);
@@ -25,6 +36,97 @@ function ProductDetail() {
 	  setCurrentImage(image);
 	  setShow(true);
 	};
+
+	const [recommendedProducts, setRecommendedProducts] = useState([]);
+
+	// Fetch product details
+	const fetchProductDetails = async () => {
+		try {
+			setLoading(true);
+			const response = await axios.get(`http://localhost/api/v1/products/${slug}/`);
+			setProduct(response.data);
+		} catch (error) {
+			if (error.response && error.response.status === 404) {
+				setError("Product not found");
+			} else {
+				setError("Error fetching product details");
+				toast.error("Error fetching product details");
+			}
+			console.error("Error fetching product details:", error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+        fetchProductDetails();
+        fetchReviews();
+    }, [slug]);
+
+    useEffect(() => {
+        // Fetch recommended products
+        const fetchRecommendedProducts = async () => {
+            try {
+                const response = await axios.get(`http://localhost/api/v1/products/${product.id}/recommended/`);
+                setRecommendedProducts(response.data);
+            } catch (error) {
+                console.error("Error fetching recommended products:", error);
+            }
+        };
+
+        fetchRecommendedProducts();
+    }, [product]);
+
+	const fetchReviews = async () => {
+        try {
+            const response = await axios.get(`http://localhost/api/v1/products/${slug}/reviews/`);
+            setReviews(response.data);
+        } catch (err) {
+            console.error('Error fetching reviews:', err);
+        }
+    };
+
+	const handleReviewAdded = () => {
+        fetchReviews();
+    };
+
+	const groupImages = (images) => {
+        const grouped = [];
+        for (let i = 0; i < images.length; i += 3) {
+            grouped.push(images.slice(i, i + 3));
+        }
+        return grouped;
+    };
+
+	const formatPrice = (price) => {
+		price = price.toLocaleString();
+        return parseInt(price.replace(/[^0-9]/g, '')).toLocaleString();
+    };
+
+    if (loading) {
+        return (
+            <div className="loading-container">
+                <ReactLoading type="spin" color="#000" height={50} width={50} />
+            </div>
+        );
+    }
+
+    if (error) {
+        if (error === "Product not found") {
+            return <div>404 - No product found</div>;
+        }
+        return (
+            <div>
+                <h2>Error</h2>
+                <p>{error}</p>
+            </div>
+        );
+    }
+
+    if (!product) {
+        return <div>404 - No product found</div>;
+    }
+	const imageGroups = groupImages(product.images || []);
 
 	return (
 	  <section style={{ direction: 'rtl', paddingTop: '20px' }}>
@@ -74,30 +176,32 @@ function ProductDetail() {
 				<Col sm={5}>
 					<div className="view-product">
 						<img
-							src={one}
+							src={product.image}
 							alt="Product"
-							onClick={() => handleShow(one)}
+							onClick={() => handleShow(product.image)}
 							style={{ cursor: 'pointer' }}
 						/>
-						<Button variant="secondary" onClick={() => handleShow(one)}>
+						<Button variant="secondary" onClick={() => handleShow(product.image)}>
 						بزرگنمایـی
 						</Button>
 					</div>
-					<Carousel>
-						{[...Array(3)].map((_, i) => (
-						<Carousel.Item key={i}>
-							{[...Array(3)].map((_, j) => (
-							<img
-								src={similar}
-								alt={`Similar Product ${i}-${j}`}
-								key={j}
-								onClick={() => handleShow(similar)}
-								style={{ cursor: 'pointer' }}
-							/>
-							))}
-						</Carousel.Item>
-						))}
-					</Carousel>
+					{imageGroups.length > 0 && (
+						<Carousel>
+							{imageGroups.map((group, i) => (
+								<Carousel.Item key={i}>
+									{group.map((image, j) => (
+									<img
+										src={image.image}
+										alt={`Similar Product ${i}-${j}`}
+										key={j}
+										onClick={() => handleShow(image.image)}
+										style={{ cursor: 'pointer' }}
+									/>
+									))}
+									</Carousel.Item>
+								))}
+							</Carousel>
+						)}
 
 					{/* Modal for image zoom */}
 					<Modal show={show} onHide={handleClose}>
@@ -118,28 +222,39 @@ function ProductDetail() {
 				  <Col sm={7}>
 					<div className="product-information">
 						<img src={newImg} className="newarrival" alt="New Arrival" />
-						<h2 className="product-title">گوشی موبایل اپل مدل iPhone 13 A2634 دو سیم‌ کارت ظرفیت 128 گیگابایت و رم 4 گیگابایت</h2>
-						<p className="product-id">شناسـه : 0110110</p>
+						<h2 className="product-title">{product.name}</h2>
+						<p className="product-id">{product.sku}</p>
 						<div className="price-and-quantity">
 						<span>
-							<span>قیمت : 2.350.000 ريال</span>
+						<span>{formatPrice(product.price)} نومان</span>
 						</span>
 						<span>
-							<label>تعداد :</label>
-							<input 
-								type="number" 
-								value={quantity} 
-								onChange={handleQuantityChange} 
-								className="search_box" 
-							/>
-							<Button variant="default" className="btn-fefault cart">
-								<i className="fa fa-shopping-cart"></i>
-								افـزودن به سبـد خریـد
-							</Button>
+						{product.amount > 0 && (
+							<>
+								<label>تعداد :</label>
+								<input 
+									type="number" 
+									value={quantity} 
+									onChange={handleQuantityChange} 
+									className="search_box" 
+								/>
+							
+								<Button variant="default" className="btn-fefault cart">
+									<i className="fa fa-shopping-cart"></i>
+									افـزودن به سبـد خریـد
+								</Button>
+						</>
+							)}
 						</span>
 						</div>
 						<div className="product-status">
-						<p><b>موجـودی :</b> در انبـار موجود می باشد</p>
+						{product.amount > 0 ? (
+                            <>
+                                <p><b>موجودی:</b> {product.amount} عدد</p>
+                            </>
+                        ) : (
+                            <p>در انبار موجود نمی‌باشد</p>
+                        )}
 						<p><b>شرایـط :</b> جدیـد</p>
 						<p><b>برنـد :</b> برنـد</p>
 						</div>
@@ -156,116 +271,19 @@ function ProductDetail() {
 						  <Nav.Link eventKey="details">جزئیات</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-						  <Nav.Link eventKey="companyprofile">درباره سازنده</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-						  <Nav.Link eventKey="tag">برچسب</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-						  <Nav.Link eventKey="reviews">نظرات (5)</Nav.Link>
+						  <Nav.Link eventKey="reviews">نظرات ({reviews.count})</Nav.Link>
 						</Nav.Item>
 					  </Nav>
 					</Col>
 					<Col sm={12}>
 					  <Tab.Content>
 						<Tab.Pane eventKey="details">
-						  <Row>
-							{[...Array(4)].map((_, index) => (
-							  <Col sm={3} key={index}>
-								<div className="product-image-wrapper">
-								  <div className="single-products">
-									<div className="productinfo text-center">
-									  <img src={galleryImg} alt={`Gallery ${index}`} />
-									  <h2>1.250.000 ريال</h2>
-									  <p>توضیحات کوتاه محصول</p>
-									  <Button variant="default" className="add-to-cart">
-										<i className="fa fa-shopping-cart"></i>افزودن به سبـد خریـد
-									  </Button>
-									</div>
-								  </div>
-								</div>
-							  </Col>
-							))}
-						  </Row>
-						</Tab.Pane>
-						<Tab.Pane eventKey="companyprofile">
-						  <Row>
-							{[...Array(4)].map((_, index) => (
-							  <Col sm={3} key={index}>
-								<div className="product-image-wrapper">
-								  <div className="single-products">
-									<div className="productinfo text-center">
-									  <img src={galleryImg} alt={`Gallery ${index}`} />
-									  <h2>1.250.000 ريال</h2>
-									  <p>توضیحات کوتاه محصول</p>
-									  <Button variant="default" className="add-to-cart">
-										<i className="fa fa-shopping-cart"></i>افزودن به سبـد خریـد
-									  </Button>
-									</div>
-								  </div>
-								</div>
-							  </Col>
-							))}
-						  </Row>
-						</Tab.Pane>
-						<Tab.Pane eventKey="tag">
-						  <Row>
-							{[...Array(4)].map((_, index) => (
-							  <Col sm={3} key={index}>
-								<div className="product-image-wrapper">
-								  <div className="single-products">
-									<div className="productinfo text-center">
-									  <img src={galleryImg} alt={`Gallery ${index}`} />
-									  <h2>1.250.000 ريال</h2>
-									  <p>توضیحات کوتاه محصول</p>
-									  <Button variant="default" className="add-to-cart">
-										<i className="fa fa-shopping-cart"></i>افزودن به سبـد خریـد
-									  </Button>
-									</div>
-								  </div>
-								</div>
-							  </Col>
-							))}
-						  </Row>
+						 <p>{product.description}</p>
 						</Tab.Pane>
 						<Tab.Pane eventKey="reviews">
 							<div className="comment-section">
-								{/* Previous reviews */}
-								<div className="previous-reviews">
-								<div className="review-item">
-									<p className="review-author">مشتری 1</p>
-									<p className="review-time">12:41 ب.ظ - 29 تیر 1397</p>
-									<p className="review-text">
-									لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-									لورملورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و
-									</p>
-								</div>
-
-								<div className="review-item">
-									<p className="review-author">مشتری 1</p>
-									<p className="review-time">12:41 ب.ظ - 29 تیر 1397</p>
-									<p className="review-text">
-									لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-									لورملورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و
-									</p>
-								</div>
-								{/* Add more review items as needed */}
-								</div>
-
-								{/* New review form */}
-								<div className="form-review">
-								<Form>
-									<Form.Group controlId="formBasicReview">
-									<Form.Label>نظر شما</Form.Label>
-									<Form.Control as="textarea" rows={5} placeholder="نظر خود را بنویسید" />
-									</Form.Group>
-									<div className="submit-button">
-										<Button variant="primary" type="submit">
-											ارسال نظر
-										</Button>
-									</div>
-								</Form>
-								</div>
+								<ReviewForm onReviewAdded={handleReviewAdded} />
+								<ReviewList reviews={reviews} />
 							</div>
 						</Tab.Pane>
 
@@ -277,7 +295,7 @@ function ProductDetail() {
   
 			  {/* Recommended products */}
 			  <div className="recommended-products">
-				<RecommenderSlider/>
+				<RecommenderSlider products={recommendedProducts} title={"محصولات پیشنهادی"}/>
 			  </div>
 			</Col>
 		  </Row>
