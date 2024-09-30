@@ -7,6 +7,7 @@ import ProductDetail from './pages/productDetail';
 import './assets/css/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductListPage from './pages/products';
+import LoginPage from './pages/login';
 
 
 function App() {
@@ -17,8 +18,8 @@ function App() {
         <Routes > 
           <Route exact path="/" element={<HomePage/>} />
           <Route exact path="products/:slug" element={<ProductDetail />} />
-          {/* <Route exact path="products/:productId" element={<ProductDetail/>} /> */}
           <Route exact path="products/" element={<ProductListPage/>} />
+          <Route exact path="login/" element={<LoginPage/>} />
         </Routes >
         <Footer />
       </Router>

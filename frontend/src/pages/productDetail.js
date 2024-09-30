@@ -5,9 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useParams } from 'react-router-dom';
 import RecommenderSlider from '../components/slider/recommenderSlider';
 import one from '../assets/images/product-details/1.jpg';
-import similar from '../assets/images/product-details/similar1.jpg';
 import newImg from '../assets/images/product-details/new.jpg';
-import galleryImg from '../assets/images/home/Gallery.jpg';
 import shippingImg from "../assets/images/home/shipping.jpg";
 import "../assets/css/productDetail.css"
 import axios from "axios";
@@ -16,8 +14,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReviewForm from '../components/review/reviewForm';
 import ReviewList from '../components/review/reviewList';
+import { useSelector, useDispatch } from 'react-redux';
+import { verifyToken } from '../redux/auth/authThunks';
 
-function ProductDetail() {
+const ProductDetail = () => {
+	const dispatch = useDispatch();
+
 	const { slug } = useParams();
 	const [quantity, setQuantity] = useState(0);
 	const [show, setShow] = useState(false);
@@ -26,6 +28,12 @@ function ProductDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null); 
 	const [reviews, setReviews] = useState([]);
+
+	const token = useSelector((state) => state.auth.token);
+
+	useEffect(() => {
+		dispatch(verifyToken());
+	  }, [dispatch]);
 
 	const handleQuantityChange = (event) => {
 	  setQuantity(event.target.value);
@@ -282,7 +290,13 @@ function ProductDetail() {
 						</Tab.Pane>
 						<Tab.Pane eventKey="reviews">
 							<div className="comment-section">
-								<ReviewForm onReviewAdded={handleReviewAdded} />
+							{token ? (
+								<>
+									<ReviewForm onReviewAdded={handleReviewAdded} />
+								</>
+								) : (
+									<p>برای ارسال دیدگاه  <a href='/login/'>وارد</a>  شوید.</p>
+								)}
 								<ReviewList reviews={reviews} />
 							</div>
 						</Tab.Pane>

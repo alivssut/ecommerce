@@ -1,3 +1,4 @@
+
 .product-image-wrapper {
     border: 1px solid #f0f0f0;
     padding: 15px;
@@ -35,7 +36,7 @@
 }
 
 .add-to-cart {
-    background-color: #e4d9ad;
+    background-color: #ff5500;
     color: #fff;
     border: none;
     transition: background-color 0.3s ease;
@@ -68,8 +69,4 @@
 .additional-buttons .btn:hover {
     background-color: #fff;
     color: #cc7a1754;
-}
-
-.additional-buttons .btn i {
-    margin-left: 5px;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { FaShoppingCart, FaEye, FaHeart } from 'react-icons/fa';
+import { FaEye, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import "../../assets/css/productCard.css";
 
@@ -30,10 +30,6 @@ const ProductCardComponent = ({ product }) => {
                         <h2 className="product-price">{formatPrice(product.price)} تومان</h2>
                         
                         <LimitedText text={product.name} limit={20} />
-
-                        <Button variant="default" className="add-to-cart">
-                            <FaShoppingCart /> افزودن به سبـد خرید
-                        </Button>
 
                         <div className="additional-buttons">
                             <Button variant="default" className="view-details" onClick={handleViewDetails}>

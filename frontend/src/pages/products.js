@@ -1,8 +1,6 @@
 import { Container, Row, Col, Carousel, Tab, Nav, Form, Button, Modal} from 'react-bootstrap';
 import "../assets/css/products.css"
 import shippingImg from "../assets/images/home/shipping.jpg";
-import productImg from "../assets/images/home/product.jpg";
-import { FaShoppingCart, FaEye, FaHeart } from 'react-icons/fa';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';

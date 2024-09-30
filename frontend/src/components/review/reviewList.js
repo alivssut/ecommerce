@@ -17,7 +17,7 @@ const ReviewList = ({ reviews }) => {
     return (
         <Card className="review-card">
             <Card.Header className="review-header">نظرات</Card.Header>
-            {reviews.results.length > 0 ? (
+            {reviews && reviews.results && reviews.results.length > 0 ? (
                 <ListGroup variant="flush">
                     {reviews.results.map((review) => (
                         <ListGroup.Item key={review.id} className="review-item">

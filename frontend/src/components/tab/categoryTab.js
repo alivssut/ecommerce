@@ -1,26 +1,14 @@
 import React from 'react';
 import { Tabs, Tab, Container, Row, Col, Button } from 'react-bootstrap';
 import tabsImg from "../../assets/images/home/Tabs.png";
-import "../../assets/css/categoryTab.css"; // فایل CSS سفارشی
+import "../../assets/css/categoryTab.css";
+import ProductCardComponent from '../cards/productCard';
 
 const CategoryTab = () => {
     const renderProducts = () => (
         <Row>
             {[...Array(4)].map((_, index) => (
-                <Col xs={12} sm={6} md={3} key={index}>
-                    <div className="product-image-wrapper">
-                        <div className="single-products">
-                            <div className="productinfo text-center">
-                                <img src={tabsImg} alt={`Product ${index + 1}`} />
-                                <h2>560.000 ريال</h2>
-                                <p>توضیحات کوتاه محصول</p>
-                                <Button variant="default" className="add-to-cart">
-                                    <i className="fa fa-shopping-cart"></i> افزودن به سبـد خریـد
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                </Col>
+                <ProductCardComponent key={index} product={{"name": "a", "price":12224, "image": tabsImg}} />
             ))}
         </Row>
     );
