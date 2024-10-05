@@ -285,9 +285,8 @@ li a{
     bottom: 10px;
     right: 10px;
   }
-  
 
-  .carousel-item img {
+  .product-detail-carousel-item img {
     margin: 2px;  /* Space between images */
     max-height: 100px;  /* Adjust the height to fit your design */
     object-fit: cover;  /* Ensure images cover the area without distortion */

@@ -3,5 +3,10 @@ from .models import Order, OrderItem
 
 # Register your models here.
 
-admin.site.register(Order)
-admin.site.register(OrderItem)
+class OrderAdmin(admin.ModelAdmin):
+    readonly_fields  = ("user",)
+admin.site.register(Order, OrderAdmin)
+
+class OrderItemAdmin(admin.ModelAdmin):
+    readonly_fields  = ("order",)
+admin.site.register(OrderItem, OrderItemAdmin)

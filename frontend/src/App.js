@@ -8,6 +8,9 @@ import './assets/css/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductListPage from './pages/products';
 import LoginPage from './pages/login';
+import CartPage from './pages/cartPage';
+import ContactUsPage from './pages/contactUsPage';
+import AboutUsPage from './pages/aboutUsPage';
 
 
 function App() {
@@ -20,6 +23,9 @@ function App() {
           <Route exact path="products/:slug" element={<ProductDetail />} />
           <Route exact path="products/" element={<ProductListPage/>} />
           <Route exact path="login/" element={<LoginPage/>} />
+          <Route exact path="cart/" element={<CartPage/>} />
+          <Route exact path="contact-us/" element={<ContactUsPage/>} />
+          <Route exact path="about-us/" element={<AboutUsPage/>} />
         </Routes >
         <Footer />
       </Router>

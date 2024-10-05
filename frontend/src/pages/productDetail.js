@@ -16,6 +16,8 @@ import ReviewForm from '../components/review/reviewForm';
 import ReviewList from '../components/review/reviewList';
 import { useSelector, useDispatch } from 'react-redux';
 import { verifyToken } from '../redux/auth/authThunks';
+import { addToCart, removeFromCart, updateCartItem, clearCartThunk } from '../redux/cart/cartThunks';
+import { resetCartSuccess } from '../redux/cart/cartActions'
 
 const ProductDetail = () => {
 	const dispatch = useDispatch();
@@ -29,7 +31,17 @@ const ProductDetail = () => {
     const [error, setError] = useState(null); 
 	const [reviews, setReviews] = useState([]);
 
+  	const { cartSuccess, cartError } = useSelector((state) => state.cart);
+
 	const token = useSelector((state) => state.auth.token);
+
+	const handleAddToCart = () => {
+		if (quantity > 0) {
+		  dispatch(addToCart(product.id, null, quantity));
+		} else {
+		  toast.error("تعداد باید بیشتر از صفر باشد!");
+		}
+	  };
 
 	useEffect(() => {
 		dispatch(verifyToken());
@@ -38,6 +50,19 @@ const ProductDetail = () => {
 	const handleQuantityChange = (event) => {
 	  setQuantity(event.target.value);
 	};
+
+	useEffect(() => {
+		if (cartError) {
+			toast.error(cartError.error);
+		}
+	  }, [cartError]);
+
+	useEffect(() => {
+		if (cartSuccess) {
+			toast.success("محصول با موفقیت به سبد خرید اضافه شد!");
+			dispatch(resetCartSuccess());
+		}
+	}, [cartSuccess]);
 
 	const handleClose = () => setShow(false);
 	const handleShow = (image) => {
@@ -138,6 +163,7 @@ const ProductDetail = () => {
 
 	return (
 	  <section style={{ direction: 'rtl', paddingTop: '20px' }}>
+	  <ToastContainer />
 		<Container>
 		  <Row>
 			{/* Sidebar on the right */}
@@ -196,7 +222,7 @@ const ProductDetail = () => {
 					{imageGroups.length > 0 && (
 						<Carousel>
 							{imageGroups.map((group, i) => (
-								<Carousel.Item key={i}>
+								<Carousel.Item key={i} className='product-detail-carousel-item'>
 									{group.map((image, j) => (
 									<img
 										src={image.image}
@@ -234,7 +260,7 @@ const ProductDetail = () => {
 						<p className="product-id">{product.sku}</p>
 						<div className="price-and-quantity">
 						<span>
-						<span>{formatPrice(product.price)} نومان</span>
+						<span>{formatPrice(product.price)} تومان</span>
 						</span>
 						<span>
 						{product.amount > 0 && (
@@ -247,7 +273,7 @@ const ProductDetail = () => {
 									className="search_box" 
 								/>
 							
-								<Button variant="default" className="btn-fefault cart">
+								<Button variant="default" className="btn-fefault cart" onClick={() => handleAddToCart()}>
 									<i className="fa fa-shopping-cart"></i>
 									افـزودن به سبـد خریـد
 								</Button>

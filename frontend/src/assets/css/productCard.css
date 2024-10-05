@@ -13,10 +13,11 @@
 }
 
 .productinfo img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+    max-width: 100% !important;
+    height: auto !important;
+    margin-bottom: 10px !important;
 }
+
 
 .product-price {
     color: #ff5500;

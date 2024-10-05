@@ -2,7 +2,7 @@ import React from 'react';
 import "../../assets/css/header.css"
 import logoImg from "../../assets/images/home/logo.png"
 import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
-import { FaUser, FaLock, FaSearch } from 'react-icons/fa';
+import { FaUser, FaLock, FaSearch, FaShoppingCart } from 'react-icons/fa';
 
 
 const Header = () => {
@@ -14,10 +14,13 @@ const Header = () => {
           <div className="d-flex justify-content-between align-items-center">
           <Nav>
               <Nav.Item>
-                <Nav.Link href="#"><FaUser /> ورود</Nav.Link>
+                <Nav.Link href="/login/"><FaUser /> ورود</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="#"><FaLock /> خروج</Nav.Link>
+                <Nav.Link href="/logout/"><FaLock /> خروج</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/cart/"><FaShoppingCart /> سبد خرید</Nav.Link>
               </Nav.Item>
             </Nav>
             <a href="#" className="mr-3">
@@ -35,8 +38,8 @@ const Header = () => {
               <Nav.Link href="/">خانه</Nav.Link>
               <Nav.Link href="/products/">محصولات</Nav.Link>
               <Nav.Link href="#">مقالات</Nav.Link>
-              <Nav.Link href="About.html">درباره ما</Nav.Link>
-              <Nav.Link href="contact-us.html">تماس با ما</Nav.Link>
+              <Nav.Link href="/about-us">درباره ما</Nav.Link>
+              <Nav.Link href="/contact-us">تماس با ما</Nav.Link>
             </Nav>
           </div>
           <div className="d-flex justify-content-end align-items-center mt-2">

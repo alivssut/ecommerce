@@ -38,6 +38,9 @@ class Order(models.Model):
     
     class Meta:
         ordering = ('-created',)
+    
+    def __str__(self):
+        return f"{self.user}"
 
 class OrderItem(models.Model):
     NEW = "New"
@@ -58,3 +61,6 @@ class OrderItem(models.Model):
     status = models.CharField(max_length=30, choices=STATUS, default='New', verbose_name='وضعیت')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"{self.order} {self.product}"
