@@ -7,6 +7,7 @@ from .serializers import ProductSerializer, ProductSimpleSerializer, CategorySer
 from .pagination import ProductsPagination, ReviewsPagination
 from django.utils.encoding import iri_to_uri
 from urllib.parse import unquote
+from django.db.models import Q
 # Create your views here.
 
 # Product list view
@@ -105,13 +106,14 @@ class ProductDeleteView(generics.DestroyAPIView):
 # Product from category 
 class ProductFromCategoryListView(generics.ListAPIView):
     authentication_classes = []
+    pagination_class = ProductsPagination
     serializer_class = ProductSimpleSerializer
     model = Product
-    lookup_url_kwarg = 'id'
+    lookup_url_kwarg = 'slug'
 
     def get_queryset(self):
-        category_id = self.kwargs.get(self.lookup_url_kwarg)
-        return Product.objects.filter(category__id=category_id)
+        slug = unquote(self.kwargs[self.lookup_url_kwarg])
+        return Product.objects.filter(Q(category__slug=slug) | Q(category__parent__slug=slug))
     
     
 # Category list view

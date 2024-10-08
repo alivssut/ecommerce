@@ -1,17 +1,16 @@
-/* CSS مربوط به هدر */
 .header-top {
-    background-color: #f8f9fa; /* رنگ پس‌زمینه */
-    padding: 10px 0; /* فاصله داخلی */
-    border-bottom: none; /* خط بین هدر بالا و پایین بدون رنگ */
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    border-bottom: none;
   }
   
   .header-bottom-yellow-line {
-    height: 2px; /* ارتفاع خط نازک */
-    background-color: orange; /* رنگ خط نارنجی */
+    height: 2px;
+    background-color: orange;
   }
   
   .rtl-navbar {
-    direction: rtl; /* تنظیم راست به چپ */
+    direction: rtl;
   }
   
   .rtl-navbar .d-flex {
@@ -25,10 +24,42 @@
   }
   
   .rtl-navbar .form-inline .form-control {
-    margin-left: 10px; /* فاصله بین نوار جستجو و دکمه */
+    margin-left: 10px;
   }
   
   .rtl-navbar .navbar-nav {
-    margin-right: auto; /* تنظیم موقعیت لینک‌های ناوبری در سمت چپ */
+    margin-right: auto;
+  }
+
+  .category-parent-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-subcategories {
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+    text-align: right;
+  }
+  
+  .category-parent-dropdown:hover .dropdown-subcategories {
+    display: block;
+  }
+  
+  .dropdown-sub-item {
+    padding: 10px;
+    color: #333;
+    text-align: right;
+  }
+  
+  .parent-category-item {
+    font-weight: bold;
+    padding: 10px;
+    color: #000;
+    text-align: right;
   }
   

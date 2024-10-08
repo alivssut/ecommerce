@@ -23,7 +23,6 @@ const LoginPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(loading)
     if (token) {
       navigate('/');
     }

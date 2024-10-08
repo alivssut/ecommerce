@@ -11,6 +11,7 @@ import LoginPage from './pages/login';
 import CartPage from './pages/cartPage';
 import ContactUsPage from './pages/contactUsPage';
 import AboutUsPage from './pages/aboutUsPage';
+import CategoryProductsPage from './pages/categoryProductsPage';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="cart/" element={<CartPage/>} />
           <Route exact path="contact-us/" element={<ContactUsPage/>} />
           <Route exact path="about-us/" element={<AboutUsPage/>} />
+          <Route exact path="category/:slug" element={<CategoryProductsPage/>} />
         </Routes >
         <Footer />
       </Router>

@@ -13,5 +13,5 @@ urlpatterns = [
     path('v1/products/<int:pk>/recommended/', views.RecommendedProductsView.as_view(), name='recommended-products'),
     
     path('v1/category-list/', views.CategoryListView.as_view(), name="category-list"),
-    path('v1/product-category/<int:id>/', views.ProductFromCategoryListView.as_view(), name="product-category"),
+    re_path('v1/product-category/(?P<slug>[^/]+)/?$', views.ProductFromCategoryListView.as_view(), name="product-category"),
 ]

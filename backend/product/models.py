@@ -20,8 +20,7 @@ class Category(models.Model):
         return str(self.name) 
     
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(unidecode(self.name), allow_unicode=True)
+        self.slug = slugify(self.name)
         super().save(*args, **kwargs)
     
     class Meta:
