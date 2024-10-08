@@ -1,0 +1,38 @@
+.review-card {
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.review-header {
+    background-color: #f8f9fa;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.review-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.review-subject {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.review-text {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.ml-2 {
+    margin-left: 8px;
+}

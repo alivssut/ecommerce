@@ -1,0 +1,47 @@
+#footer {
+    font-family: 'Vazir', sans-serif;
+  }
+  
+  .footer-Before {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+  
+  .searchform.newslatter input {
+    border: none;
+    border-radius: 0;
+  }
+  
+  .searchform.newslatter button {
+    background-color: #ffc107;
+    border: none;
+  }
+  
+  .footer-top,
+  .footer-widget {
+    background-color: #f8f9fa;
+  }
+  
+  .footer-widget ul.nav-pills {
+    padding-left: 0;
+    list-style: none;
+  }
+  
+  .footer-widget ul.nav-pills li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-widget ul.nav-pills li a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .footer-widget ul.nav-pills li a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-bottom {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+  

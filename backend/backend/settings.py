@@ -30,9 +30,13 @@ SECRET_KEY = "django-insecure-5pp9w9j)0mpca-^2fx@1enw6w*oz6)@ozr8&)k=6lp1p!h2bmd
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CSRF_TRUSTED_ORIGINS = ['http://*.127.0.0.1']
 
 ALLOWED_HOSTS = ['*']
 
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
 # Application definition
 
@@ -52,6 +56,8 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "corsheaders",
+    "rest_framework_swagger",
+    "drf_spectacular",
     
     "location",
     "account",
@@ -62,11 +68,12 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -101,7 +108,11 @@ AUTH_USER_MODEL = 'accounts.User'
 
 DATABASES = {
     "default": env.dj_db_url("DATABASE_URL",
-                             default="postgres://postgres@db/postgres")
+                             default="postgres://postgres@db/postgres"),
+    'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+        },
 }
 
 
@@ -189,4 +200,18 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Schema
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'My Project API',
+    'DESCRIPTION': 'API documentation',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }

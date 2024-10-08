@@ -1,0 +1,354 @@
+/* Add padding for the left sidebar */
+.padding-left {
+    padding-left: 15px;
+  }
+  
+  /* Add padding for the right main section */
+  .padding-right {
+    padding-right: 15px;
+  }
+  
+  /* Style for the right sidebar */
+.right-sidebar {
+    padding: 15px;
+    border-top: 1px solid #dddddd60;
+    border-bottom: 1px solid #dddddd60;
+    border-left: none;
+    border-right: none;
+    border-radius: 0; /* Remove border-radius for a consistent border style */
+}
+
+ul{
+    list-style-type: none; 
+}
+
+/* Shipping info image style */
+.shipping-info img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Style for the product details section */
+.product-details {
+    margin-bottom: 20px;
+}
+
+/* Style for the recommended products section */
+.recommended-products {
+    margin-top: 20px;
+}
+  
+.recommended-products h2 {
+    margin-bottom: 20px;
+}
+  
+/* Style for the heading with lines on both sides */
+.heading-with-lines {
+    position: relative;
+    text-align: center;
+    margin: 20px 0; /* Adjust as needed */
+  }
+  
+  .heading-with-lines h2 {
+    display: inline-block;
+    padding: 0 30px; /* Increase space between lines and text */
+    background-color: #fff; /* Ensure background color matches the page */
+    position: relative;
+    z-index: 1; /* Ensure text appears above the lines */
+    color: rgba(214, 125, 17, 0.768);
+  }
+  
+  .heading-with-lines::before,
+  .heading-with-lines::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #ddd; /* Light color for the lines */
+    z-index: 0; /* Ensure lines appear behind the text */
+  }
+  
+  .heading-with-lines::before {
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .heading-with-lines::after {
+    right: 0;
+    transform: translateY(-50%);
+  }
+
+li a{
+    color: rgba(11, 11, 1, 0.807);
+    text-decoration: none;
+}
+
+/* Style for product information */
+.product-information {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .product-information img.newarrival {
+    max-width: 100%; /* Ensure the image does not exceed container width */
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  .product-information h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .product-information p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .price-and-quantity {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Add spacing between elements */
+    margin-bottom: 20px;
+  }
+  
+  .price-and-quantity span {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add spacing between elements */
+  }
+  
+  .price-and-quantity span:first-child {
+    font-size: 20px;
+    font-weight: bold;
+    color: orange; /* Orange color for price */
+  }
+  
+  .search_box {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    text-align: center; /* Center the text inside the input */
+  }
+  
+  .btn-fefault.cart {
+    background-color: #f0ad4e; /* Light orange background */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .btn-fefault.cart i {
+    margin-right: 5px;
+  }
+  
+  .product-status {
+    margin-top: 20px;
+  }
+  
+  .product-status p {
+    margin-bottom: 5px;
+  }
+
+  .product-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .product-id {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .product-information {
+    text-align: right;
+  }
+  
+  .product-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .product-id {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .price-and-quantity {
+    margin-bottom: 20px;
+  }
+  
+  .price-and-quantity .price {
+    display: block;
+    font-size: 1.25rem;
+    color: #f57c00;
+    margin-bottom: 10px;
+  }
+  
+  .price-and-quantity .quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity label {
+    margin-right: 10px;
+  }
+  
+  .search_box {
+    width: 60px;
+    margin-right: 10px;
+  }
+  
+  .btn-fefault.cart {
+    background-color: #f57c00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn-fefault.cart i {
+    margin-right: 8px;
+  }
+  
+  .product-status {
+    margin-top: 20px;
+  }
+  
+  .product-status p {
+    margin: 5px 0;
+  }
+  
+  .comment-section {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+  }
+  
+  .comment-section p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .comment-section .form-review {
+    margin-top: 20px;
+  }
+  
+  .comment-section .form-review .form-control {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .comment-section .form-review button {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .comment-section .form-review button:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  .view-product {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .view-product img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .view-product button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .product-detail-carousel-item img {
+    margin: 2px;  /* Space between images */
+    max-height: 100px;  /* Adjust the height to fit your design */
+    object-fit: cover;  /* Ensure images cover the area without distortion */
+    max-width: 268px;  /* Ensure images don't exceed the width of the carousel item */
+  }
+
+/* CSS to customize the left and right navigation buttons of the carousel */
+.carousel-control-prev,
+.carousel-control-next {
+  color: #fff; /* Change this to the desired color for the arrow icons */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #f57b0044; /* Change this to the desired color for the icons */
+}
+  
+/* Hide carousel indicators */
+.carousel-indicators {
+    display: none;
+  }
+
+  .comment-section {
+    padding: 15px;
+    text-align: right; /* Aligns all text to the right */
+  }
+  
+  .previous-reviews {
+    margin-bottom: 20px;
+  }
+  
+  .review-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    text-align: right; /* Ensures review items are right-aligned */
+  }
+  
+  .review-author {
+    font-weight: bold;
+  }
+  
+  .review-time {
+    color: #888;
+    font-size: 0.9em;
+  }
+  
+  .review-text {
+    margin-top: 5px;
+  }
+  
+  .form-review {
+    margin-top: 20px;
+    text-align: right; /* Aligns form elements to the right */
+  }
+  
+  .form-review label {
+    display: block;
+    text-align: right; /* Aligns label text to the right */
+  }
+
+  .form-review .submit-button {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 10px;
+  }

@@ -1,0 +1,55 @@
+.about-us-page {
+    background-color: #f5f5f5;
+    padding: 50px;
+    border-radius: 10px;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .intro-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #555;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .info-card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    background-color: #ffffff;
+  }
+  
+  .info-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .info-card .card-body {
+    padding: 30px;
+  }
+  
+  .info-card .card-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #777;
+  }
+  

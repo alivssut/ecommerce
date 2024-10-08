@@ -1,0 +1,27 @@
+.category-tab {
+    padding: 20px 0;
+}
+
+.nav-tabs {
+    background-color: #333;
+    margin-bottom: 5px;
+}
+
+.nav-tabs .nav-item.show .nav-link, 
+.nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #ba970b;
+    border-color: #333;
+}
+
+.nav-tabs .nav-link {
+    color: #bbb;
+    border: none;
+    border-radius: 0;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #fff;
+    background-color: #ba970b;
+}
+

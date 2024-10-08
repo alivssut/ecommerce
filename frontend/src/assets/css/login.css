@@ -1,0 +1,36 @@
+.login-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    direction: rtl;
+  }
+  
+  .card {
+    border-radius: 15px;
+    border: none;
+  }
+  
+  .btn-orange {
+    background-color: #ff8800;
+    border-color: #ff8800;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .btn-orange:hover {
+    background-color: #e67e22;
+    border-color: #e67e22;
+  }
+  
+  .form-control {
+    border-radius: 10px;
+    padding: 12px;
+  }
+  
+  .card-body {
+    padding: 30px;
+  }
+  
+  .text-center {
+    font-weight: bold;
+  }
+  
