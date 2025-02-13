@@ -1,5 +1,5 @@
-import './App.css';
-import {BrowserRouter as Router, Routes , Route} from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './pages/homePage';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
@@ -12,26 +12,41 @@ import CartPage from './pages/cartPage';
 import ContactUsPage from './pages/contactUsPage';
 import AboutUsPage from './pages/aboutUsPage';
 import CategoryProductsPage from './pages/categoryProductsPage';
+import AdminLayout from './pages/admin/adminLayout';
+import Dashboard from './pages/admin/dashboard';
+import Products from './pages/admin/product';
 
+function Layout() {
+  const location = useLocation();
+  const isAdminPanel = location.pathname.startsWith('/panel');
+  return (
+    <div className="App">
+      {!isAdminPanel && <Header />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="panel/*" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="products" element={<Products />} />
+        </Route>
+        <Route path="products/:slug" element={<ProductDetail />} />
+        <Route path="products" element={<ProductListPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="cart" element={<CartPage />} />
+        <Route path="contact-us" element={<ContactUsPage />} />
+        <Route path="about-us" element={<AboutUsPage />} />
+        <Route path="category/:slug" element={<CategoryProductsPage />} />
+      </Routes>
+      {!isAdminPanel && <Footer />}
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Header/>
-        <Routes > 
-          <Route exact path="/" element={<HomePage/>} />
-          <Route exact path="products/:slug" element={<ProductDetail />} />
-          <Route exact path="products/" element={<ProductListPage/>} />
-          <Route exact path="login/" element={<LoginPage/>} />
-          <Route exact path="cart/" element={<CartPage/>} />
-          <Route exact path="contact-us/" element={<ContactUsPage/>} />
-          <Route exact path="about-us/" element={<AboutUsPage/>} />
-          <Route exact path="category/:slug" element={<CategoryProductsPage/>} />
-        </Routes >
-        <Footer />
-      </Router>
-    </div>
+    <Router>
+      <Layout />
+    </Router>
   );
 }
 
