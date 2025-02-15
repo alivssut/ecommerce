@@ -14,7 +14,7 @@ const Header = ({ toggleSidebar }) => {
 
         {/* Search Bar */}
         <div className="search-bar">
-          <input type="text" placeholder="جستجو..." />
+          <input type="text" placeholder="جستجو..." className='serach-input'/>
           <button>
             <i className="icon">🔍</i>
           </button>
