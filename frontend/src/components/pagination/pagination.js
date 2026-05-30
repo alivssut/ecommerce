@@ -52,7 +52,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           className="page-link"
           onClick={() => handlePageChange(1)}
         >
-          First
+          اول
         </button>
       </li>
 
@@ -63,7 +63,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           className="page-link"
           onClick={() => handlePageChange(currentPage - 1)}
         >
-          Previous
+          قبلی
         </button>
       </li>
 
@@ -88,7 +88,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           className="page-link"
           onClick={() => handlePageChange(currentPage + 1)}
         >
-          Next
+          بعدی
         </button>
       </li>
 
@@ -99,7 +99,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           className="page-link"
           onClick={() => handlePageChange(totalPages)}
         >
-          Last
+          آخر
         </button>
       </li>
     </ul>

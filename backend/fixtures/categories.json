@@ -1,0 +1,45 @@
+[
+    {
+      "model": "product.category",
+      "pk": 101,
+      "fields": {
+        "parent": null,
+        "name": "گوشی موبایل",
+        "slug": "mobile",
+        "image": "",
+        "description": "انواع گوشی‌های هوشمند",
+        "is_active": true,
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.category",
+      "pk": 102,
+      "fields": {
+        "parent": null,
+        "name": "لپ‌تاپ",
+        "slug": "laptop",
+        "image": "",
+        "description": "لپ‌تاپ‌های اداری و گیمینگ",
+        "is_active": true,
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.category",
+      "pk": 103,
+      "fields": {
+        "parent": null,
+        "name": "لوازم جانبی",
+        "slug": "accessories",
+        "image": "",
+        "description": "شارژر، هندزفری و ساعت هوشمند",
+        "is_active": true,
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    }
+  ]
+  

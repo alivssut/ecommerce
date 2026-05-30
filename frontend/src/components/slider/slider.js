@@ -1,41 +1,69 @@
-import React from "react";
-import { Carousel, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
+import styles from "../../assets/css/Slider.module.css";
 import girlImg from "../../assets/images/home/girl2.jpg";
-import "../../assets/css/slider.css";
+
+const slides = [
+    {
+        title: "شاپ سنتر",
+        subtitle: "مرکز خرید آنلاین",
+        text: "بهترین محصولات با مناسب‌ترین قیمت، ارسال سریع، تضمین بازگشت وجه.",
+        img: girlImg,
+    },
+    {
+        title: "شاپ سنتر",
+        subtitle: "به روزترین کالاها",
+        text: "انواع پوشاک، لوازم دیجیتال، کالای خانه و سبک زندگی.",
+        img: girlImg,
+    }
+];
 
 const Slider = () => {
+    const [index, setIndex] = useState(0);
+
+    const prevSlide = () => {
+        setIndex((index - 1 + slides.length) % slides.length);
+    };
+
+    const nextSlide = () => {
+        setIndex((index + 1) % slides.length);
+    };
+
+    const slide = slides[index];
+
     return (
-        <section id="slider">
-            <div className="container">
-                <Carousel>
-                    <Carousel.Item className="item">
-                        <div className="row">
-                            <div className="col-sm-6">
-                                <h1><span>SHOP</span>CENTER</h1>
-                                <h2>Shop Center</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <Button variant="warning" className="get">Get it now</Button>
-                            </div>
-                            <div className="col-sm-6">
-                                <img src={girlImg} className="girl img-fluid" alt="Girl" />
-                            </div>
-                        </div>
-                    </Carousel.Item>
-                    <Carousel.Item className="item">
-                        <div className="row">
-                            <div className="col-sm-6">
-                                <h1><span>SHOP</span>CENTER</h1>
-                                <h2>Shop Center</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <Button variant="warning" className="get">Get it now</Button>
-                            </div>
-                            <div className="col-sm-6">
-                                <img src={girlImg} className="girl img-fluid" alt="Girl" />
-                            </div>
-                        </div>
-                    </Carousel.Item>
-                </Carousel>
+        <section className={styles.slider}>
+            <div className={styles.container}>
+
+                <div className={styles.slide}>
+                    <div className={styles.textBox}>
+                        <h1><span>شاپ</span> سنتر</h1>
+                        <h2>{slide.subtitle}</h2>
+                        <p>{slide.text}</p>
+                        <button className={styles.btn}>مشاهده محصولات</button>
+                    </div>
+
+                    <div className={styles.imageBox}>
+                        <img src={slide.img} className={styles.image} alt="تصویر اسلاید" />
+                    </div>
+                </div>
+
+                <button onClick={prevSlide} className={`${styles.control} ${styles.left}`}>
+                    ❯
+                </button>
+
+                <button onClick={nextSlide} className={`${styles.control} ${styles.right}`}>
+                    ❮
+                </button>
+
+                <div className={styles.indicators}>
+                    {slides.map((_, i) => (
+                        <span
+                            key={i}
+                            className={`${styles.dot} ${i === index ? styles.active : ""}`}
+                            onClick={() => setIndex(i)}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );

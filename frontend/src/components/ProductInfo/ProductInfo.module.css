@@ -1,0 +1,157 @@
+.productInfo {
+  padding: 0.5rem 0;
+  text-align: right;
+}
+
+.newBadge {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+.productTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.productSku {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.priceSection {
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f57c00;
+}
+
+.stockStatus {
+  margin-bottom: 1.5rem;
+}
+
+.inStock {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.outOfStock {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+.variantSelector {
+  margin-bottom: 1.5rem;
+}
+
+.variantSelector label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.variantSelect {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+}
+
+.variantSelect:focus {
+  border-color: #f57c00;
+  box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.1);
+}
+
+.addToCartSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.quantityControl label {
+  font-weight: 500;
+  color: #555;
+}
+
+.quantityInput {
+  width: 70px;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.quantityInput:focus {
+  outline: none;
+  border-color: #f57c00;
+  box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.1);
+}
+
+.addToCartBtn {
+  background-color: #f57c00;
+  border: none;
+  border-radius: 30px;
+  padding: 0.7rem 1.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.addToCartBtn:hover:not(:disabled) {
+  background-color: #e06c00;
+  transform: translateY(-1px);
+}
+
+.addToCartBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.metaInfo {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.metaInfo p {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.metaLabel {
+  font-weight: 600;
+  color: #333;
+  margin-left: 0.5rem;
+  min-width: 50px;
+  display: inline-block;
+}
+
+@media (max-width: 576px) {
+  .productTitle {
+    font-size: 1.5rem;
+  }
+  .price {
+    font-size: 1.6rem;
+  }
+  .addToCartSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

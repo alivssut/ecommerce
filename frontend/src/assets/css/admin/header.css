@@ -1,0 +1,171 @@
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  background-color: rgb(23, 24, 33);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  z-index: 10;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+  /* Smooth animation for all properties */
+  position: relative;
+}
+
+/* Expanded State (Sidebar Open) */
+.sidebar.open+.content .hamburger-btn span:nth-child(1) {
+  transform: rotate(-45deg) translateY(8px) translateX(0);
+}
+
+.sidebar.open+.content .hamburger-btn span:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar.open+.content .hamburger-btn span:nth-child(3) {
+  transform: rotate(45deg) translateY(-8px) translateX(0);
+}
+
+/* Collapsed State (Sidebar Closed) */
+.sidebar:not(.open)+.content .hamburger-btn span:nth-child(1) {
+  transform: rotate(0deg) translateY(0) translateX(0);
+}
+
+.sidebar:not(.open)+.content .hamburger-btn span:nth-child(2) {
+  opacity: 1;
+}
+
+.sidebar:not(.open)+.content .hamburger-btn span:nth-child(3) {
+  transform: rotate(0deg) translateY(0) translateX(0);
+}
+
+.hamburger-btn:hover span {
+  background-color: #575757;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: rgb(33, 34, 45);
+  border-radius: 30px;
+  padding: 5px 15px;
+  margin-left: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  /* Increased width */
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+    /* Full width on small screens */
+    margin-left: 0;
+  }
+}
+
+.search-bar input {
+  color: rgb(210, 210, 210);
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  flex-grow: 1;
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+/* User Info and Profile Dropdown */
+.user-info {
+  position: relative;
+  /* Ensure the parent container is positioned */
+}
+
+.profile-dropdown {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  /* Ensure dropdown menu aligns with this container */
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 10px;
+}
+
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 0.8rem;
+}
+
+.dropdown-menu {
+  top: 100%;
+  /* Position below the profile dropdown */
+  right: auto;
+  /* Reset right alignment */
+  left: 0;
+  /* Align to the left edge of the parent */
+  background: rgb(33, 34, 45);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: rgb(23, 24, 33);
+}
+
+.profile-dropdown:hover .dropdown-menu {
+  display: block;
+  /* Show the dropdown menu on hover */
+}
+
+/* Adjust for small screens */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    right: auto;
+    /* Reset right alignment */
+    left: 0;
+    /* Align to the left edge of the parent */
+  }
+}

@@ -1,0 +1,51 @@
+[
+    {
+      "model": "product.brand",
+      "pk": 101,
+      "fields": {
+        "name": "اپل",
+        "slug": "apple",
+        "description": "شرکت فناوری آمریکایی اپل",
+        "is_active": true,
+        "created_at": "2024-01-01T12:00:00Z",
+        "updated_at": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.brand",
+      "pk": 102,
+      "fields": {
+        "name": "سامسونگ",
+        "slug": "samsung",
+        "description": "شرکت خوشه‌ای کره‌ای سامسونگ",
+        "is_active": true,
+        "created_at": "2024-01-01T12:00:00Z",
+        "updated_at": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.brand",
+      "pk": 103,
+      "fields": {
+        "name": "شیائومی",
+        "slug": "xiaomi",
+        "description": "شرکت صنایع الکترونیک چینی",
+        "is_active": true,
+        "created_at": "2024-01-01T12:00:00Z",
+        "updated_at": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.brand",
+      "pk": 104,
+      "fields": {
+        "name": "ایسوس",
+        "slug": "asus",
+        "description": "شرکت تایوانی تولیدکننده رایانه",
+        "is_active": true,
+        "created_at": "2024-01-01T12:00:00Z",
+        "updated_at": "2024-01-01T12:00:00Z"
+      }
+    }
+  ]
+  

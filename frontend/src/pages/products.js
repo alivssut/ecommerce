@@ -1,93 +1,112 @@
-import { Container, Row, Col, Carousel, Tab, Nav, Form, Button, Modal} from 'react-bootstrap';
-import "../assets/css/products.css"
-import shippingImg from "../assets/images/home/shipping.jpg";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from 'react-router-dom';
-import PaginationComponent from '../components/pagination/pagination';
-import ProductCardComponent from '../components/cards/productCard';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+import ProductSidebar from '../components/ProductSidebar/ProductSidebar';
+import ProductGrid from '../components/ProductGrid/ProductGrid';
+import PaginationComponent from '../components/pagination/PaginationComponent';
+import styles from './ProductListPage.module.css';
 
-function ProductListPage() {
-    const [count, setCount] = useState(-1)
-    const [products, setProducts] = useState([])
-    const search = window.location.search;
-    const params = new URLSearchParams(search);
-    const navigate = useNavigate();
-    const [currentPage, setCurrentPage] = useState(1);
+const ProductListPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [products, setProducts] = useState([]);
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [brandName, setBrandName] = useState('');
 
-    useEffect(() => {
-        axios.get("http://localhost/api/v1/products?page=" + (params.get('page') == null ? 1 : params.get('page'))).then((response) => {
-          if (response.status === 200) {
-            setProducts(response.data.results)
-            setCount(response.data.count)
-          }
-        }).catch((error) => console.log(error));
-      }, [currentPage]);
+  const currentPage = parseInt(searchParams.get('page')) || 1;
+  const brandSlug = searchParams.get('brand');
+  const productsPerPage = 12;
 
-    const handlePageChange = (page) => {
-        navigate("/products?page=" + page);
-        setCurrentPage(page);
+  // Fetch brand name if brandSlug exists
+  useEffect(() => {
+    const fetchBrandName = async () => {
+      if (!brandSlug) {
+        setBrandName('');
+        return;
+      }
+      try {
+        const response = await axios.get(`http://localhost/api/v1/brands/`);
+        const brand = response.data.find(b => b.slug === brandSlug);
+        setBrandName(brand?.name || '');
+      } catch (err) {
+        console.error('Error fetching brand name:', err);
+      }
+    };
+    fetchBrandName();
+  }, [brandSlug]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        let url = `http://localhost/api/v1/products?page=${currentPage}`;
+        if (brandSlug) {
+          url += `&brand=${brandSlug}`;
+        }
+        const response = await axios.get(url);
+        if (response.status === 200) {
+          setProducts(response.data.results);
+          setCount(response.data.count);
+        }
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('خطا در بارگذاری محصولات. لطفاً دوباره تلاش کنید.');
+      } finally {
+        setLoading(false);
+      }
     };
 
-  return (
-    <section style={{ direction: 'rtl', paddingTop: '20px' }}>
-		<Container>
-		  <Row>
-			{/* Sidebar on the right */}
-			<Col sm={3} className="padding-left">
-				<div className='right-sidebar'>
-				<ul className="catalog category-products">
-				  <li className="category-products">
-				  <div class="heading-with-lines">
-					<h2>دسته‌بندی‌ها</h2>
-					</div>
-					<ul>
-					  <li><a href="#">دسته‌بندی 1</a></li>
-					  <li><a href="#">دسته‌بندی 2</a></li>
-					  <li><a href="#">دسته‌بندی 3</a></li>
-					  <li><a href="#">دسته‌بندی 4</a></li>
-					</ul>
-				  </li>
-				</ul>
-				</div>
-			  <div className='right-sidebar'>
-			  <div class="heading-with-lines">
-				<h2>برندها</h2>
-			  </div>
+    fetchProducts();
+  }, [currentPage, brandSlug]);
 
-				<ul className="brands">
-					<li><a href=""> <span class="pull-left">(50)</span>برنـد 1</a></li>
-					<li><a href=""> <span class="pull-left">(56)</span>برنـد 2</a></li>
-					<li><a href=""> <span class="pull-left">(27)</span>برنـد 3</a></li>
-					<li><a href=""> <span class="pull-left">(32)</span>برنـد 4</a></li>
-					<li><a href=""> <span class="pull-left">(5)</span>برنـد 5</a></li>
-				</ul>
-			  </div>
-			  <div className="right-sidebar">
-				<div className="shipping-info">
-				  <img src={shippingImg} alt="Shipping Info" />
-				</div>
-			  </div>
-			</Col>
-  
-			{/* Main product details */}
-			<Col sm={9} className="padding-right">
-                <div className="product-list">
-                    <div className="heading-with-lines">
-                        <h2>محصولات</h2>
+  const handlePageChange = (page) => {
+    const params = { page: page.toString() };
+    if (brandSlug) params.brand = brandSlug;
+    setSearchParams(params);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getPageTitle = () => {
+    if (brandName) return `محصولات برند ${brandName}`;
+    return 'همه محصولات';
+  };
+
+  return (
+    <section className={styles.page}>
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          <aside className={styles.sidebar}>
+            <ProductSidebar />
+          </aside>
+
+          <main className={styles.mainContent}>
+            <div className={styles.contentWrapper}>
+              <h2 className={styles.pageTitle}>{getPageTitle()}</h2>
+              {error ? (
+                <div className={styles.error}>{error}</div>
+              ) : (
+                <>
+                  <ProductGrid products={products} loading={loading} />
+                  {count > productsPerPage && !loading && (
+                    <div className={styles.paginationWrapper}>
+                      <PaginationComponent
+                        count={count}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                        contentPerPage={productsPerPage}
+                      />
                     </div>
-                    <Row>
-                        {products.map((product) => (
-                            <ProductCardComponent key={product.id} product={product} />
-                        ))}
-                    </Row>
-                </div>
-			</Col>
-		  </Row>
-		</Container>
-        <PaginationComponent count={count} currentPage={params.get('page') == null ? 1 : params.get('page')} handlePageChange={handlePageChange} contentPerPage={5} />
-	  </section>
+                  )}
+                </>
+              )}
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
   );
-}
+};
 
 export default ProductListPage;

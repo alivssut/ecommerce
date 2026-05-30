@@ -1,14 +1,20 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework_simplejwt import authentication
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
-from product.models import Product, Category, ReviewRating
-from .serializers import ProductSerializer, ProductSimpleSerializer, CategorySerializer, ReviewRatingSerializer
+from product.models import Product, Category, ReviewRating, Brand
+from .serializers import ProductSerializer, ProductSimpleSerializer, CategorySerializer, ReviewRatingSerializer, ProductDetailSerializer, BrandListSerializer
 from .pagination import ProductsPagination, ReviewsPagination
 from django.utils.encoding import iri_to_uri
 from urllib.parse import unquote
 from django.db.models import Q
 # Create your views here.
+
+class BrandListView(generics.ListAPIView):
+    serializer_class = BrandListSerializer
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    queryset = Brand.objects.filter(is_active=True)
 
 # Product list view
 class ProductListView(generics.ListAPIView):
@@ -17,6 +23,13 @@ class ProductListView(generics.ListAPIView):
     authentication_classes = [authentication.JWTAuthentication]
     permission_classes = [AllowAny,]
     queryset = Product.objects.all()
+    
+    def get_queryset(self):
+        queryset = Product.objects.filter(visibility='Public', status='Published')
+        brand_slug = self.request.query_params.get('brand')
+        if brand_slug:
+            queryset = queryset.filter(brand__slug=brand_slug)
+        return queryset.order_by('-created')
 
 class ProductReviewsView(generics.ListAPIView):
     pagination_class = ReviewsPagination
@@ -28,6 +41,14 @@ class ProductReviewsView(generics.ListAPIView):
         slug = unquote(self.kwargs.get('slug'))
         product = generics.get_object_or_404(Product, slug=slug)
         return ReviewRating.objects.filter(product=product, status="accepted")
+
+class ProductReviewCreateView(generics.CreateAPIView):
+    serializer_class = ReviewRatingSerializer
+    authentication_classes = [authentication.JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
     
 class BestSellingProductListView(generics.ListAPIView):
     serializer_class = ProductSimpleSerializer
@@ -60,14 +81,16 @@ class ProductCreateView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated,]
     
 class ProductDetailByIdView(generics.RetrieveAPIView):
-    serializer_class = ProductSerializer
+    serializer_class = ProductDetailSerializer
     authentication_classes = [authentication.JWTAuthentication]
     permission_classes = [AllowAny,]
     lookup_url_kwarg = 'id'
     lookup_field = 'id'
 
     def get_queryset(self):
-        return Product.objects.filter(visibility='Public', status='Published')
+        return Product.objects.filter(visibility='Public', status='Published').select_related('brand').prefetch_related(
+            'category', 'images', 'product_attribute__attribute', 'variation__product_attribute__attribute', 'reviews'
+        )
 
     def get_object(self):
         queryset = self.get_queryset()
@@ -75,14 +98,23 @@ class ProductDetailByIdView(generics.RetrieveAPIView):
         return obj
     
 class ProductDetailBySlugView(generics.RetrieveAPIView):
-    serializer_class = ProductSerializer
+    serializer_class = ProductDetailSerializer
     authentication_classes = [authentication.JWTAuthentication]
     permission_classes = [AllowAny,]
     lookup_url_kwarg = 'slug'
     lookup_field = 'slug'
 
     def get_queryset(self):
-        return Product.objects.filter(visibility='Public', status='Published')
+        return Product.objects.filter(
+            visibility='Public',
+            status='Published'
+        ).select_related('brand').prefetch_related(
+            'category',
+            'images',
+            'product_attribute__attribute',
+            'variation__product_attribute__attribute',
+            'reviews'
+        )
 
     def get_object(self):
         queryset = self.get_queryset()
@@ -121,4 +153,19 @@ class CategoryListView(generics.ListAPIView):
     serializer_class = CategorySerializer
     authentication_classes = []
     permission_classes = [AllowAny,]
-    queryset = Category.objects.filter(parent=None).all()
+    queryset = Category.objects.filter(parent=None, is_active=True).all()
+    
+    
+class ProductSearchView(generics.ListAPIView):
+    pagination_class = ProductsPagination
+    serializer_class = ProductSimpleSerializer
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'description']
+
+    def get_queryset(self):
+        return Product.objects.filter(
+            visibility='Public',
+            status='Published'
+        ).order_by('-created')

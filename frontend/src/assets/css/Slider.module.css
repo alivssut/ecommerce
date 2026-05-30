@@ -1,0 +1,188 @@
+.slider {
+    width: 100%;
+    padding: 40px 0;
+    direction: rtl;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+    position: relative;
+  }
+  
+  .slide {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 300px;
+  }
+  
+  .textBox {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .textBox h1 {
+    font-size: 48px;
+    margin-top: 40px;
+    color: #B4B1AB;
+    font-family: inherit;
+  }
+  
+  .textBox h1 span {
+    color: #FE980F;
+  }
+  
+  .textBox h2 {
+    font-size: 28px;
+    margin-top: 15px;
+    color: #363432;
+    font-weight: 700;
+  }
+  
+  .textBox p {
+    margin-top: 10px;
+    color: #363432;
+    font-size: 16px;
+  }
+  
+  .btn {
+    background: #FE980F;
+    padding: 12px 25px;
+    border: none;
+    margin-top: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
+  
+  .imageBox {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+  }
+  
+  .image {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+  
+  .control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 38px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #C2C2C1;
+    transition: 0.3s;
+    padding: 5px;
+  }
+  
+  .control:hover {
+    color: #FE980F;
+  }
+  
+  .left {
+    left: 5px;
+  }
+  
+  .right {
+    right: 5px;
+  }
+  
+  .indicators {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    background: #C4C4BE;
+    display: inline-block;
+    margin: 0 4px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .active {
+    background: #FE980F;
+  }
+  
+  @media (max-width: 768px) {
+    .slide {
+      flex-direction: column-reverse; /* اول عکس، بعد متن */
+      padding: 0; /* حذف فاصله‌های اضافه که صفحه را خراب می‌کرد */
+      text-align: center;
+    }
+  
+    .textBox {
+      min-width: 100%;
+      margin-top: 20px;
+    }
+  
+    .textBox h1 {
+      font-size: 32px;
+      margin-top: 10px;
+    }
+  
+    .textBox h2 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  
+    .textBox p {
+      font-size: 14px;
+      margin-top: 8px;
+      line-height: 1.7;
+    }
+  
+    .btn {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  
+    .imageBox {
+      min-width: 100%;
+    }
+  
+    .image {
+      max-width: 260px;
+      margin: auto;
+    }
+  
+    .control {
+      font-size: 28px; /* کوچک‌تر برای موبایل */
+    }
+  
+    .left {
+      left: 10px;
+    }
+  
+    .right {
+      right: 10px;
+    }
+  
+    .indicators {
+      margin-top: 15px;
+    }
+  
+    .dot {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  
+  

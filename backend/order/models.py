@@ -1,6 +1,8 @@
 from django.db import models
 from account.models import User, UserAddress
 from product.models import Product, Variant
+import random
+import string
 
 # Create your models here.
 class Order(models.Model):
@@ -22,7 +24,7 @@ class Order(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='User')
     address = models.ForeignKey(UserAddress, on_delete=models.SET_NULL, null=True, verbose_name='Address')
-    address_post_code = models.IntegerField(blank=True, verbose_name='post code', null=True)
+    address_post_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='post code')
     code = models.CharField(max_length=10, editable=False, verbose_name='Order code')
     status = models.CharField(
         max_length=20,
@@ -33,6 +35,9 @@ class Order(models.Model):
     email = models.CharField(max_length=50, blank=True)
     phone = models.CharField(max_length=100, blank=True)
     ip = models.CharField(blank=True, max_length=20, verbose_name='IP')
+    
+    zarinpal_authority = models.CharField(max_length=50, blank=True, null=True)
+    
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
@@ -41,6 +46,15 @@ class Order(models.Model):
     
     def __str__(self):
         return f"{self.user}"
+    
+    @classmethod
+    def generate_code(cls):
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+
+    def save(self, *args, **kwargs):
+        if not self.code:
+            self.code = self.generate_code()
+        super().save(*args, **kwargs)
 
 class OrderItem(models.Model):
     NEW = "New"

@@ -1,52 +1,84 @@
 from rest_framework import serializers
 from order.models import Order, OrderItem
-from unidecode import unidecode
-from django.utils.text import slugify
-from urllib.parse import unquote
+from product.models import Variant, ProductAttribute
+
+
+class VariantAttributeSerializer(serializers.ModelSerializer):
+    attribute_name = serializers.CharField(source='attribute.name')
+    value = serializers.CharField()
+
+    class Meta:
+        model = ProductAttribute
+        fields = ('attribute_name', 'value')
+
+
+class VariantSerializer(serializers.ModelSerializer):
+    attributes = VariantAttributeSerializer(source='product_attribute', many=True, read_only=True)
+
+    class Meta:
+        model = Variant
+        fields = ('id', 'sku', 'price', 'quantity', 'attributes')
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    product_id = serializers.IntegerField(source='product.id')
+    product_name = serializers.CharField(source='product.name')
+    product_image = serializers.ImageField(source='product.image')
+    product_slug = serializers.CharField(source='product.slug')
+    variant = VariantSerializer(read_only=True)
+
+    class Meta:
+        model = OrderItem
+        fields = (
+            'id', 'quantity', 'price', 'amount',
+            'product_id', 'product_name', 'product_image', 'product_slug',
+            'variant'
+        )
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    product_name = serializers.CharField(source='product.name')
+    product_image = serializers.ImageField(source='product.image', read_only=True)
+    variant_details = VariantSerializer(source='variant', read_only=True)
+
+    class Meta:
+        model = OrderItem
+        fields = ('id', 'product_name', 'product_image', 'variant_details', 'quantity', 'price', 'amount', 'status')
+
 
 class OrderSummarySerializer(serializers.ModelSerializer):
+    total_items = serializers.SerializerMethodField()
+    total_price = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Order
+        fields = ('id', 'code', 'status', 'created', 'updated', 'total_items', 'total_price')
+
+    def get_total_items(self, obj):
+        return obj.order.count()
     
-    class Meta:
-        model = Order
-        fields = ("id", "address", "address_post_code", "code", "status", "phone")
-        
-def custom_slugify(value):
-    return unquote(value)
+    def get_total_price(self, obj):
+        return sum(item.amount for item in obj.order.all())
 
-class OrderItemSummarySerializer(serializers.ModelSerializer):
-    product_id = serializers.IntegerField(source="product.id")
-    product_name = serializers.CharField(source="product.name")
-    product_image = serializers.ImageField(source="product.image")
-    product_slug = serializers.SerializerMethodField()
 
-    class Meta:
-        model = OrderItem
-        fields = ("id", "quantity", "price", "amount", "product_id", "product_name", "product_image", "product_slug")
-
-    def get_product_slug(self, obj):
-        return custom_slugify(obj.product.name)
-        
-# Serializer for listing minimal order information
-class OrderListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Order
-        fields = ['id', 'code', 'status', 'created', 'updated']
-
-# Serializer for detailed order information including items and address
 class OrderDetailSerializer(serializers.ModelSerializer):
-    order_items = serializers.SerializerMethodField()
+    items = OrderItemSerializer(source='order', many=True, read_only=True)
+    total_price = serializers.SerializerMethodField()
+    full_address = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
-        fields = ['id', 'user', 'code', 'status', 'full_name', 'email', 'phone', 
-                  'address', 'address_post_code', 'ip', 'created', 'updated', 'order_items']
+        fields = (
+            'id', 'code', 'status', 'full_name', 'email', 'phone',
+            'address_post_code', 'created', 'updated',
+            'items', 'total_price', 'full_address'
+        )
 
-    def get_order_items(self, obj):
-        order_items = obj.order.all()  # Assuming related_name='order' in OrderItem
-        return OrderItemSerializer(order_items, many=True).data
+    def get_total_price(self, obj):
+        return sum(item.amount for item in obj.order.all())
 
-# Serializer for order items
-class OrderItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OrderItem
-        fields = ['product', 'variant', 'quantity', 'price', 'amount', 'status']
+    def get_full_address(self, obj):
+        if obj.address:
+            addr = obj.address
+            return f"{addr.province.name}، {addr.city.name}، {addr.address}"
+        return "آدرس ثبت نشده"

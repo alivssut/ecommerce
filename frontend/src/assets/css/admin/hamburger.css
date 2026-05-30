@@ -1,0 +1,50 @@
+/* Hamburger Button */
+.hamburger-btn {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .hamburger-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+    transition: all 0.3s ease; /* Smooth animation for all properties */
+    position: relative;
+  }
+  
+  /* Expanded State (Sidebar Open) */
+  .sidebar.open + .content .hamburger-btn span:nth-child(1) {
+    transform: rotate(-45deg) translateY(8px) translateX(0);
+  }
+  
+  .sidebar.open + .content .hamburger-btn span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .sidebar.open + .content .hamburger-btn span:nth-child(3) {
+    transform: rotate(45deg) translateY(-8px) translateX(0);
+  }
+  
+  /* Collapsed State (Sidebar Closed) */
+  .sidebar:not(.open) + .content .hamburger-btn span:nth-child(1) {
+    transform: rotate(0deg) translateY(0) translateX(0);
+  }
+  
+  .sidebar:not(.open) + .content .hamburger-btn span:nth-child(2) {
+    opacity: 1;
+  }
+  
+  .sidebar:not(.open) + .content .hamburger-btn span:nth-child(3) {
+    transform: rotate(0deg) translateY(0) translateX(0);
+  }
+  
+  .hamburger-btn:hover span {
+    background-color: #575757;
+  }

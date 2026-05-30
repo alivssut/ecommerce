@@ -1,0 +1,36 @@
+.priceDetails {
+    background-color: #fff;
+    border-radius: 16px;
+  }
+  
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .priceRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f5f5f5;
+    color: #444;
+  }
+  
+  .discount {
+    color: #28a745;
+  }
+  
+  .finalRow {
+    border-bottom: none;
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 1px dashed #ddd;
+  }
+  
+  .finalPrice {
+    color: #f57c00;
+    font-size: 1.2rem;
+  }

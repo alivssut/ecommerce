@@ -1,0 +1,59 @@
+.profilePage {
+    direction: rtl;
+    padding: 2rem 0;
+    min-height: 60vh;
+    background-color: #fafafa;
+  }
+  
+  .pageTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  .pageTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70px;
+    height: 3px;
+    background-color: #f57c00;
+    border-radius: 2px;
+  }
+  
+  .profileCard {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+  }
+  
+  .profileView .field {
+    display: flex;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .profileView .field:last-child {
+    border-bottom: none;
+  }
+  
+  .label {
+    width: 120px;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .value {
+    color: #222;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+  }

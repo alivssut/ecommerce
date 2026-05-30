@@ -1,0 +1,78 @@
+.sidebarBlock {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    border: 1px solid #f0f0f0;
+  }
+  
+  .heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #d47b11;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    position: relative;
+  }
+  
+  .heading::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #f57c00;
+  }
+  
+  .linkList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .linkList li {
+    margin-bottom: 0.8rem;
+  }
+  
+  .linkList li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .linkList a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  
+  .linkList a:hover {
+    color: #f57c00;
+  }
+  
+  .count {
+    color: #888;
+    font-size: 0.85rem;
+  }
+  
+  .shippingBanner {
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shippingBanner img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .shippingBanner:hover img {
+    transform: scale(1.02);
+  }
