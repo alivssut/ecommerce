@@ -1,0 +1,92 @@
+.page {
+    direction: rtl;
+    padding: 2rem 0;
+    background-color: #fafafa;
+    min-height: 80vh;
+  }
+  
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+  }
+  
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .mainContent {
+    width: 100%;
+  }
+  
+  .contentWrapper {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    padding: 1.5rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    position: relative;
+  }
+  
+  .pageTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 60px;
+    height: 2px;
+    background-color: #f57c00;
+  }
+  
+  .paginationWrapper {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .error {
+    text-align: center;
+    padding: 3rem;
+    background-color: #fff3f3;
+    border-radius: 12px;
+    color: #d32f2f;
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 992px) {
+    .grid {
+      grid-template-columns: 240px 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .page {
+      padding: 1rem 0;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .contentWrapper {
+      padding: 1rem;
+    }
+    .pageTitle {
+      font-size: 1.4rem;
+    }
+  }

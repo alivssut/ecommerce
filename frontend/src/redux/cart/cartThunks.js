@@ -29,7 +29,7 @@ export const addToCart = (product_id, variant_id, quantity = 1) => async (dispat
     });
     dispatch(addToCartSuccess(response.data));
   } catch (error) {
-    dispatch(addToCartFailure(error.response?.data || 'An error occurred'));
+    dispatch(addToCartFailure(error.response?.data || 'خطا در افزودن به سبد خرید'));
   }
 };
 
@@ -37,10 +37,10 @@ export const addToCart = (product_id, variant_id, quantity = 1) => async (dispat
 export const removeFromCart = (itemId) => async (dispatch) => {
   dispatch(removeFromCartRequest());
   try {
-    await axiosConfig.delete(`/cart/remove/${itemId}/`);
-    dispatch(removeFromCartSuccess(itemId));
+    const response = await axiosConfig.delete(`/v1/cart/remove/${itemId}/`);
+    dispatch(removeFromCartSuccess(response.data));
   } catch (error) {
-    dispatch(removeFromCartFailure(error.response?.data || 'An error occurred'));
+    dispatch(removeFromCartFailure(error.response?.data || 'خطا در حذف محصول'));
   }
 };
 
@@ -48,12 +48,12 @@ export const removeFromCart = (itemId) => async (dispatch) => {
 export const updateCartItem = (itemId, quantity) => async (dispatch) => {
   dispatch(updateCartItemRequest());
   try {
-    const response = await axiosConfig.put(`/api/v1/cart/update/${itemId}/`, {
+    const response = await axiosConfig.patch(`/v1/cart/update/${itemId}/`, {
       quantity,
     });
     dispatch(updateCartItemSuccess(response.data));
   } catch (error) {
-    dispatch(updateCartItemFailure(error.response?.data || 'An error occurred'));
+    dispatch(updateCartItemFailure(error.response?.data || 'خطا در به‌روزرسانی'));
   }
 };
 
@@ -69,7 +69,7 @@ export const getCart = () => async (dispatch) => {
     const response = await axiosConfig.get('http://localhost/api/v1/cart/');
     dispatch(getCartSuccess(response.data));
   } catch (error) {
-    dispatch(getCartFailure(error.response?.data || 'An error occurred'));
+    dispatch(getCartFailure(error.response?.data || 'خطا در دریافت سبد خرید'));
   }
 };
 
@@ -77,7 +77,7 @@ export const getCart = () => async (dispatch) => {
 export const getCartList = () => async (dispatch) => {
   dispatch(getCartListRequest());
   try {
-    const response = await axiosConfig.get('/api/v1/cart/list/');
+    const response = await axiosConfig.get('/v1/cart/list/');
     dispatch(getCartListSuccess(response.data));
   } catch (error) {
     dispatch(getCartListFailure(error.response?.data || 'An error occurred'));

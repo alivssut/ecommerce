@@ -1,40 +1,45 @@
 import React from 'react';
+import { Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import CartItem from './cartItem';
-import PriceDetails from './priceDetails';
-import { Row, Col, Button, Alert } from 'react-bootstrap';
+import PriceDetails from './PriceDetails';
+import styles from './CartSummary.module.css';
 
-const CartSummary = ({ cartItems, totalPrice, discount, shipping, onRemove, onUpdateQuantity }) => {
+const CartSummary = ({ cartItems, totalPrice, onRemove, onUpdateQuantity }) => {
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
+
   return (
-    <>
-      {cartItems && cartItems.length === 0 ? (
-        <Alert variant="warning">سبد خرید شما خالی است!</Alert>
-      ) : (
-        <>
-          <Row>
-            <Col md={8}>
-              {cartItems.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  onRemove={onRemove}
-                  onUpdateQuantity={onUpdateQuantity}  // Pass update function
-                />
-              ))}
-            </Col>
-            <Col md={4}>
-              <PriceDetails
-                totalPrice={totalPrice}
-                discount={discount}
-                shipping={shipping}
-              />
-              <Button variant="success" block className="mt-3">
-                ادامه فرایند خرید
-              </Button>
-            </Col>
-          </Row>
-        </>
-      )}
-    </>
+    <Row className={styles.cartSummary}>
+      <Col lg={8}>
+        <div className={styles.itemsSection}>
+          {cartItems.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+              onRemove={onRemove}
+              onUpdateQuantity={onUpdateQuantity}
+            />
+          ))}
+        </div>
+      </Col>
+      <Col lg={4}>
+        <div className={styles.sidebar}>
+          <PriceDetails totalPrice={totalPrice} />
+          <Button
+            variant="success"
+            size="lg"
+            className={styles.checkoutBtn}
+            onClick={handleCheckout}
+          >
+            ادامه فرایند خرید
+          </Button>
+        </div>
+      </Col>
+    </Row>
   );
 };
 

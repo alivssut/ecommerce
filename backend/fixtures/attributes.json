@@ -1,0 +1,27 @@
+[
+    {
+      "model": "product.attribute",
+      "pk": 101,
+      "fields": {
+        "name": "رنگ",
+        "slug": "color"
+      }
+    },
+    {
+      "model": "product.attribute",
+      "pk": 102,
+      "fields": {
+        "name": "حافظه داخلی",
+        "slug": "storage"
+      }
+    },
+    {
+      "model": "product.attribute",
+      "pk": 103,
+      "fields": {
+        "name": "حافظه رم",
+        "slug": "ram"
+      }
+    }
+  ]
+  

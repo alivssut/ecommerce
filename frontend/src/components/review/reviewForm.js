@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import axiosConfig from '../../axiosConfig';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import '../../assets/css/review-form.css';
 
-const ReviewForm = ({ onReviewAdded }) => {
+const ReviewForm = ({ onReviewAdded, productId }) => {
     const { slug } = useParams();
     const [rating, setRating] = useState(1);
     const [subject, setSubject] = useState('');
@@ -16,7 +17,8 @@ const ReviewForm = ({ onReviewAdded }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost/api/v1/products/${slug}/reviews/`, {
+            await axiosConfig.post(`http://localhost/api/v1/products/${productId}/reviews/create/`, {
+                'product': productId,
                 rating,
                 subject,
                 review

@@ -1,0 +1,131 @@
+.orderDetailPage {
+    direction: rtl;
+    padding: 2rem 0;
+    min-height: 60vh;
+    background-color: #fafafa;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  .pageTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70px;
+    height: 3px;
+    background-color: #f57c00;
+    border-radius: 2px;
+  }
+  
+  .backLink {
+    color: #f57c00;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .backLink:hover {
+    color: #d47b11;
+  }
+  
+  .infoCard,
+  .addressCard,
+  .itemsCard {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+    margin-bottom: 1.5rem;
+  }
+  
+  .itemsTable {
+    margin-top: 1rem;
+  }
+  
+  .itemsTable thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #f57c00;
+    font-weight: 600;
+  }
+  
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .productName {
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .variantInfo {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+  }
+
+  .paymentSection {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    text-align: left;
+  }
+  
+  .payBtn {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000;
+    font-weight: 600;
+    padding: 0.6rem 2rem;
+    border-radius: 8px;
+  }
+  
+  .payBtn:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+    color: #000;
+  }
+
+  .productThumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+  
+  .noImage {
+    width: 60px;
+    height: 60px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.7rem;
+    border: 1px solid #eee;
+  }

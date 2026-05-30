@@ -35,7 +35,7 @@ class UserAddress(models.Model):
     province = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='province')
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='city')
     address = models.CharField(blank=True, max_length=250, verbose_name='post address')
-    post_code = models.IntegerField(blank=True, verbose_name='post code', null=True)
+    post_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='post code')
     selected = models.BooleanField(default=False, verbose_name='selected address')
 
     def user_name(self):

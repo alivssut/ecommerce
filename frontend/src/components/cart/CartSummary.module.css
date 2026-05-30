@@ -1,0 +1,42 @@
+.cartSummary {
+    margin-top: 0.5rem;
+  }
+  
+  .itemsSection {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+  }
+  
+  .sidebar {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+    position: sticky;
+    top: 20px;
+  }
+  
+  .checkoutBtn {
+    width: 100%;
+    margin-top: 1.5rem;
+    background-color: #28a745;
+    border: none;
+    padding: 0.8rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    transition: background-color 0.2s;
+  }
+  
+  .checkoutBtn:hover {
+    background-color: #218838;
+  }
+  
+  @media (max-width: 992px) {
+    .sidebar {
+      margin-top: 1.5rem;
+      position: static;
+    }
+  }

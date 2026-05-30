@@ -56,8 +56,9 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "corsheaders",
-    "rest_framework_swagger",
+    # "rest_framework_swagger",
     "drf_spectacular",
+    'swagger_ui_bundle',
     
     "location",
     "account",
@@ -150,7 +151,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/statics/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -214,4 +215,14 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'API documentation',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_DIST': '/statics/drf_spectacular/swagger-ui-dist',
+    'SWAGGER_UI_FAVICON_HREF': '/statics/drf_spectacular/swagger-ui-dist/favicon-32x32.png',
 }
+
+SWAGGER_SETTINGS = {
+    'USE_PLANTUML': False,
+    'DEFAULT_API_URL': '',
+    'SECURITY_DEFINITIONS': None,
+}
+
+ZARINPAL_MERCHANT = "your-test-merchant-code"

@@ -1,38 +1,46 @@
-import React from 'react';
-import { Carousel } from 'react-bootstrap';
-import "../../assets/css/recommenderSlider.css";
-import ProductCardComponent from '../cards/productCard';
+import React, { useRef } from "react";
+import styles from "../../assets/css/RecommenderSlider.module.css";
+import ProductCardComponent from "../cards/productCard";
 
 const RecommenderSlider = ({ products, title }) => {
-    // Group products into sets (e.g., 2 products per slide)
-    const groupedProducts = [];
-    const itemsPerSlide = 4; // Number of products per slide
+  const sliderRef = useRef();
 
-    for (let i = 0; i < products.length; i += itemsPerSlide) {
-        groupedProducts.push(products.slice(i, i + itemsPerSlide));
-    }
+  const scroll = (direction) => {
+    const slider = sliderRef.current;
+    const amount = slider.clientWidth * 0.85;
+    slider.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
+  };
 
-    return (
-        <div className="recommended_items">
-            <div className="section-title-wrapper">
-                <hr className="section-title-line" />
-                <h2 className="title text-center">{title}</h2>
-                <hr className="section-title-line" />
+  return (
+    <div className={styles.wrapper}>
+
+      <div className={styles.header}>
+        <hr className={styles.line} />
+        <h2 className={styles.title}>{title}</h2>
+        <hr className={styles.line} />
+      </div>
+
+      <div className={styles.sliderContainer}>
+        
+        <button className={styles.btnPrev} onClick={() => scroll("left")}>
+          ◀
+        </button>
+
+        <div className={styles.slider} ref={sliderRef}>
+          {products.map((p, index) => (
+            <div key={p.id} className={`${styles.cardWrapper} ${styles.fadeIn}`}>
+              <ProductCardComponent product={p} />
             </div>
-
-            <Carousel indicators={false} interval={3000} controls={true} className="carousel-custom">
-                {groupedProducts.map((group, index) => (
-                    <Carousel.Item key={index}>
-                        <div className="row">
-                            {group.map((product) => (
-                                <ProductCardComponent key={product.id} product={product} />
-                            ))}
-                        </div>
-                    </Carousel.Item>
-                ))}
-            </Carousel>
+          ))}
         </div>
-    );
+
+        <button className={styles.btnNext} onClick={() => scroll("right")}>
+          ▶
+        </button>
+
+      </div>
+    </div>
+  );
 };
 
 export default RecommenderSlider;

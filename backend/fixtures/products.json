@@ -1,0 +1,423 @@
+[
+    {
+      "model": "product.product",
+      "pk": 101,
+      "fields": {
+        "name": "گوشی موبایل اپل مدل آیفون ۱۵ پرو مکس",
+        "sku": "APL-15PM",
+        "image": "",
+        "price": 85000000,
+        "description": "جدیدترین پرچمدار اپل با بدنه تیتانیومی",
+        "brand": 101,
+        "amount": 20,
+        "category": [101],
+        "slug": "apple-iphone-15-pro-max",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 102,
+      "fields": {
+        "name": "گوشی موبایل اپل مدل آیفون ۱۵ پرو",
+        "sku": "APL-15P",
+        "image": "",
+        "price": 75000000,
+        "description": "آیفون ۱۵ پرو با تراشه قدرتمند",
+        "brand": 101,
+        "amount": 15,
+        "category": [101],
+        "slug": "apple-iphone-15-pro",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 103,
+      "fields": {
+        "name": "گوشی موبایل اپل مدل آیفون ۱۵",
+        "sku": "APL-15",
+        "image": "",
+        "price": 50000000,
+        "description": "نسخه پایه آیفون ۱۵",
+        "brand": 101,
+        "amount": 30,
+        "category": [101],
+        "slug": "apple-iphone-15",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 104,
+      "fields": {
+        "name": "گوشی موبایل اپل مدل آیفون ۱۳",
+        "sku": "APL-13",
+        "image": "",
+        "price": 38000000,
+        "description": "آیفون ۱۳ با ارزش خرید بالا",
+        "brand": 101,
+        "amount": 50,
+        "category": [101],
+        "slug": "apple-iphone-13",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 105,
+      "fields": {
+        "name": "گوشی سامسونگ مدل گلکسی S24 اولترا",
+        "sku": "SAM-S24U",
+        "image": "",
+        "price": 72000000,
+        "description": "پرچمدار سامسونگ مجهز به هوش مصنوعی",
+        "brand": 102,
+        "amount": 25,
+        "category": [101],
+        "slug": "samsung-galaxy-s24-ultra",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 106,
+      "fields": {
+        "name": "گوشی سامسونگ مدل گلکسی S24 پلاس",
+        "sku": "SAM-S24P",
+        "image": "",
+        "price": 55000000,
+        "description": "نسخه پلاس پرچمدار جدید سامسونگ",
+        "brand": 102,
+        "amount": 10,
+        "category": [101],
+        "slug": "samsung-galaxy-s24-plus",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 107,
+      "fields": {
+        "name": "گوشی سامسونگ مدل گلکسی A54",
+        "sku": "SAM-A54",
+        "image": "",
+        "price": 16000000,
+        "description": "میان‌رده محبوب و پرفروش سامسونگ",
+        "brand": 102,
+        "amount": 100,
+        "category": [101],
+        "slug": "samsung-galaxy-a54",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 108,
+      "fields": {
+        "name": "گوشی سامسونگ مدل گلکسی A34",
+        "sku": "SAM-A34",
+        "image": "",
+        "price": 12000000,
+        "description": "گوشی اقتصادی سامسونگ",
+        "brand": 102,
+        "amount": 80,
+        "category": [101],
+        "slug": "samsung-galaxy-a34",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 109,
+      "fields": {
+        "name": "گوشی شیائومی مدل پوکو X6 پرو",
+        "sku": "XIA-X6P",
+        "image": "",
+        "price": 18000000,
+        "description": "قاتل پرچمدار شیائومی مخصوص بازی",
+        "brand": 103,
+        "amount": 40,
+        "category": [101],
+        "slug": "xiaomi-poco-x6-pro",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 110,
+      "fields": {
+        "name": "گوشی شیائومی مدل ردمی نوت ۱۳",
+        "sku": "XIA-RN13",
+        "image": "",
+        "price": 10000000,
+        "description": "موبایل اقتصادی و زیبای شیائومی",
+        "brand": 103,
+        "amount": 60,
+        "category": [101],
+        "slug": "xiaomi-redmi-note-13",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 111,
+      "fields": {
+        "name": "لپ‌تاپ اپل مدل مک‌بوک پرو M3",
+        "sku": "MAC-PRO-M3",
+        "image": "",
+        "price": 110000000,
+        "description": "مک بوک پرو با پردازنده M3",
+        "brand": 101,
+        "amount": 5,
+        "category": [102],
+        "slug": "apple-macbook-pro-m3",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 112,
+      "fields": {
+        "name": "لپ‌تاپ اپل مدل مک‌بوک ایر M2",
+        "sku": "MAC-AIR-M2",
+        "image": "",
+        "price": 65000000,
+        "description": "لپ تاپ سبک و زیبای اپل",
+        "brand": 101,
+        "amount": 12,
+        "category": [102],
+        "slug": "apple-macbook-air-m2",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 113,
+      "fields": {
+        "name": "لپ‌تاپ گیمینگ ایسوس مدل ROG Strix",
+        "sku": "ASUS-ROG-S",
+        "image": "",
+        "price": 95000000,
+        "description": "لپ تاپ مخصوص بازی ایسوس",
+        "brand": 104,
+        "amount": 8,
+        "category": [102],
+        "slug": "asus-rog-strix-gaming",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 114,
+      "fields": {
+        "name": "لپ‌تاپ ایسوس مدل TUF Gaming F15",
+        "sku": "ASUS-TUF-F15",
+        "image": "",
+        "price": 52000000,
+        "description": "لپ تاپ گیمینگ اقتصادی",
+        "brand": 104,
+        "amount": 15,
+        "category": [102],
+        "slug": "asus-tuf-gaming-f15",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 115,
+      "fields": {
+        "name": "لپ‌تاپ ایسوس مدل زن‌بوک",
+        "sku": "ASUS-ZEN",
+        "image": "",
+        "price": 60000000,
+        "description": "لپ تاپ اولترابوک و باریک ایسوس",
+        "brand": 104,
+        "amount": 10,
+        "category": [102],
+        "slug": "asus-zenbook",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 116,
+      "fields": {
+        "name": "هدفون بی‌سیم اپل مدل ایرپاد پرو ۲",
+        "sku": "APP-AIR2",
+        "image": "",
+        "price": 12500000,
+        "description": "هندزفری بلوتوثی با نویز کنسلینگ عالی",
+        "brand": 101,
+        "amount": 40,
+        "category": [103],
+        "slug": "apple-airpods-pro-2",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 117,
+      "fields": {
+        "name": "هدفون بی‌سیم سامسونگ مدل گلکسی بادز ۲ پرو",
+        "sku": "SAM-BUDS2P",
+        "image": "",
+        "price": 7500000,
+        "description": "هندزفری حرفه‌ای سامسونگ",
+        "brand": 102,
+        "amount": 35,
+        "category": [103],
+        "slug": "samsung-galaxy-buds-2-pro",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 118,
+      "fields": {
+        "name": "شارژر دیواری ۲۰ وات اپل",
+        "sku": "APP-CH20",
+        "image": "",
+        "price": 1200000,
+        "description": "آداپتور شارژ اصلی اپل",
+        "brand": 101,
+        "amount": 200,
+        "category": [103],
+        "slug": "apple-20w-charger",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 119,
+      "fields": {
+        "name": "شارژر دیواری ۴۵ وات سامسونگ",
+        "sku": "SAM-CH45",
+        "image": "",
+        "price": 1800000,
+        "description": "آداپتور فست شارژ سامسونگ",
+        "brand": 102,
+        "amount": 150,
+        "category": [103],
+        "slug": "samsung-45w-charger",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 120,
+      "fields": {
+        "name": "ساعت هوشمند اپل واچ سری ۹",
+        "sku": "APP-AW9",
+        "image": "",
+        "price": 22000000,
+        "description": "جدیدترین ساعت هوشمند اپل",
+        "brand": 101,
+        "amount": 25,
+        "category": [103],
+        "slug": "apple-watch-series-9",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 121,
+      "fields": {
+        "name": "ساعت هوشمند سامسونگ مدل گلکسی واچ ۶",
+        "sku": "SAM-GW6",
+        "image": "",
+        "price": 11000000,
+        "description": "اسمارت واچ سامسونگ",
+        "brand": 102,
+        "amount": 30,
+        "category": [103],
+        "slug": "samsung-galaxy-watch-6",
+        "status": "Published",
+        "product_type": "Simple",
+        "visibility": "Public",
+        "created": "2024-01-01T12:00:00Z",
+        "updated": "2024-01-01T12:00:00Z"
+      }
+    }
+  ]
+  
